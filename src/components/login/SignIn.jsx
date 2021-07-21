@@ -54,6 +54,8 @@ const useStyles = makeStyles((theme) => ({
   },
   root: {
     flexGrow: 1,
+    
+   
   },
   menuButton: {
     marginRight: theme.spacing(2),
@@ -70,7 +72,7 @@ export default function SignIn() {
   const classes = useStyles();
 
   return (
-    <div className={classes.root}>
+    <div className={classes.root}  >
       <AppBar position="static" >
         <Toolbar>
           <IconButton
@@ -80,24 +82,33 @@ export default function SignIn() {
             aria-label="menu">
             <MenuIcon />
           </IconButton>
+
           <Typography variant="h6" className={classes.title}>
             Support Hub
           </Typography>
           <Button color="inherit">Logout</Button>
         </Toolbar>
       </AppBar>
+
        <div className={classes.mainContent}>
     <Container component="main" maxWidth="xs">
       <CssBaseline />
+
+
       <div className={classes.paper}>
+
         <Avatar className={classes.avatar}>
           <LockOutlinedIcon />
         </Avatar>
+
         <Typography component="h1" variant="h5">
           Sign In
         </Typography>
+
         <form className={classes.form} noValidate>
-          <Grid container spacing={3}>
+
+          <Grid container spacing={3}  align-items="center">
+
             <Grid item xs={12}>
               <TextField
                 variant="outlined"
@@ -109,6 +120,8 @@ export default function SignIn() {
                 autoComplete="userid"
               />
             </Grid>
+
+
             <Grid item xs={12}>
               <TextField
                 variant="outlined"
@@ -121,6 +134,8 @@ export default function SignIn() {
                 autoComplete="current-password"
               />
             </Grid>
+
+
           </Grid>
           <Button
             type="submit"
@@ -131,13 +146,31 @@ export default function SignIn() {
           >
             Sign In
           </Button>
-          <Grid container justifyContent="flex-end">
-            <Grid item>
+
+          
+          <Grid container justifyContent="space-evenly">
+            
+            <Grid item   >
+              <Link href="#" variant="body2">
+                Forgot Password
+              </Link>
+            </Grid>
+
+            <Grid item   >
               <Link href="#" variant="body2">
                 Don't have an account? Sign Up
               </Link>
             </Grid>
-          </Grid>
+
+
+            </Grid>
+
+
+
+          
+
+
+          
         </form>
       </div>
       

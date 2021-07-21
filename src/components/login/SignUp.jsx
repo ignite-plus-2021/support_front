@@ -89,7 +89,10 @@ export default function SignUp() {
           Sign up
         </Typography>
         <form className={classes.form} noValidate>
+         
           <Grid container spacing={3}>
+
+
             <Grid item xs={12} sm={6}>
               <TextField
                 autoComplete="fname"
@@ -102,6 +105,8 @@ export default function SignUp() {
                 autoFocus
               />
             </Grid>
+
+
             <Grid item xs={12} sm={6}>
               <TextField
                 variant="outlined"
@@ -113,6 +118,8 @@ export default function SignUp() {
                 autoComplete="lname"
               />
             </Grid>
+
+
             <Grid item xs={12}>
               <TextField
                 variant="outlined"
@@ -123,7 +130,37 @@ export default function SignUp() {
                 name="userid"
                 autoComplete="userid"
               />
-            </Grid>
+              </Grid>
+
+
+              <Grid item xs={12}>
+              <TextField
+                variant="outlined"
+                required
+                fullWidth
+                name="password"
+                label="Password"
+                type="password"
+                id="password"
+                autoComplete="current-password"
+              />
+             </Grid>
+
+
+             <Grid item xs={12}>
+              <TextField
+                variant="outlined"
+                required
+                fullWidth
+                name="confirmpassword"
+                label="Confirm-Password"
+                type="password"
+                id="password"
+                autoComplete="current-password"
+              />
+              </Grid>
+
+            
             <Grid item xs={12}>
               <TextField
                 variant="outlined"
@@ -135,6 +172,8 @@ export default function SignUp() {
                 autoComplete="email"
               />
             </Grid>
+
+
             <Grid item xs={12}>
               <TextField
                 variant="outlined"
@@ -146,18 +185,10 @@ export default function SignUp() {
                 autoComplete="contact"
               />
             </Grid>
-            <Grid item xs={12}>
-              <TextField
-                variant="outlined"
-                required
-                fullWidth
-                name="password"
-                label="Password"
-                type="password"
-                id="password"
-                autoComplete="current-password"
-              />
-            </Grid>
+           
+            
+
+
             <Grid item xs={12}>
             <FormControl component="fieldset">
             <FormLabel component="legend">Designation</FormLabel>
@@ -167,7 +198,9 @@ export default function SignUp() {
             </RadioGroup>
             </FormControl>
             </Grid>
-          </Grid>
+            </Grid>
+
+         
           <Button
             type="submit"
             fullWidth
@@ -175,12 +208,16 @@ export default function SignUp() {
             color="primary"
             className={classes.submit}
           >
-            Sign Up
+          Sign Up
           </Button>
+        
+
+         
+
           <Grid container justifyContent="flex-end">
             <Grid item>
               <Link href="#" variant="body2">
-                Already have an account? Sign in
+                Already have an account?   Sign in
               </Link>
             </Grid>
           </Grid>
