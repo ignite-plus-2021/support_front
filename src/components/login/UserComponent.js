@@ -8,7 +8,6 @@ class UserComponents extends React.Component{
         super(props);
         this.state=this.initialState;
         this.submit=this.submit.bind(this);          
-
        }
 
        initialState={
