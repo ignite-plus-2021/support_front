@@ -68,20 +68,17 @@ export const SignUp = () => {
 
   //Method to call endpoint and register
   const RegisterUser = () => {
-    // axios
-    //   .post("https://localhost:8080/api/register")
-    axios({
-      method: "post",
-      url: "https://localhost:8080/api/register",
-      data: {
-        firstName: firstName,
-        lastName: lastName,
-        password: password,
-        emailId: emailAddress,
-        phoneNo: contact,
-        role: designation,
-      },
-    })
+    const jsonBody = {
+      firstName: firstName,
+      lastName: lastName,
+      password: password,
+      emailId: emailAddress,
+      phoneNo: contact,
+      role: designation,
+    };
+    axios
+      .post("http://localhost:8080/register", jsonBody)
+
       .then((response) => {
         if (response.status === 200) {
           alert("User Registered");
