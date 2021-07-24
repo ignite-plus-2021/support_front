@@ -137,10 +137,10 @@ export default function SignUp() {
                 variant="outlined"
                 required
                 fullWidth
-                id="lastName"
-                label="Last Name"
-                name="lastName"
-                autoComplete="lname"
+                id="UserName"
+                label="User Name"
+                name="userName"
+                autoComplete="uname"
               />
             </Grid>
 
