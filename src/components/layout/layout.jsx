@@ -18,6 +18,8 @@ import List from "@material-ui/core/List";
 import { Link, Route, Switch } from "react-router-dom";
 import Tooltip from "@material-ui/core/Tooltip";
 import SignUp from "../login/SignUp";
+import homePage from "../homePage";
+import SignIn from "../login/SignIn";
 
 const drawerWidth = 240;
 
@@ -206,7 +208,9 @@ export const Layout = () => {
       <main className={classes.content}>
         <div className={classes.appBarSpacer} />
         <Switch>
-          <Route key="/" exact path="/" component={SignUp} />
+          <Route key="/" exact path="/" component={homePage} />
+          <Route key="/register" exact path="/register" component={SignUp} />
+          <Route key="/login" exact path="/login" component={SignIn} />
         </Switch>
       </main>
     </div>

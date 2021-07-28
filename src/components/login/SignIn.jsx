@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{ useState } from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -6,14 +6,13 @@ import TextField from '@material-ui/core/TextField';
 import Link from '@material-ui/core/Link';
 import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
-import AppBar from "@material-ui/core/AppBar";
-import Toolbar from "@material-ui/core/Toolbar";
-import IconButton from "@material-ui/core/IconButton";
-import MenuIcon from "@material-ui/icons/Menu";
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
+import axios from "axios";
+
+
 
 function Copyright() {
   return (
@@ -69,116 +68,130 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function SignIn() {
+  const [userName, setUserName] = useState("");
+  const [password, setPassword] = useState("");
   const classes = useStyles();
 
-  return (
-    <div className={classes.root}  >
-      <AppBar position="static" >
-        <Toolbar>
-          <IconButton
-            edge="start"
-            className={classes.menuButton}
-            color="inherit"
-            aria-label="menu">
-            <MenuIcon />
-          </IconButton>
-
-          <Typography variant="h6" className={classes.title}>
-            Support Hub
-          </Typography>
-          <Button color="inherit">Logout</Button>
-        </Toolbar>
-      </AppBar>
-
-       <div className={classes.mainContent}>
-    <Container component="main" maxWidth="xs">
-      <CssBaseline />
-
-
-      <div className={classes.paper}>
-
-        <Avatar className={classes.avatar}>
-          <LockOutlinedIcon />
-        </Avatar>
-
-        <Typography component="h1" variant="h5">
-          Sign In
-        </Typography>
-
-        <form className={classes.form} noValidate>
-
-          <Grid container spacing={3}  align-items="center">
-
-            <Grid item xs={12}>
-              <TextField
-                variant="outlined"
-                required
-                fullWidth
-                id="userid"
-                label="User ID"
-                name="userid"
-                autoComplete="userid"
-              />
-            </Grid>
-
-
-            <Grid item xs={12}>
-              <TextField
-                variant="outlined"
-                required
-                fullWidth
-                name="password"
-                label="Password"
-                type="password"
-                id="password"
-                autoComplete="current-password"
-              />
-            </Grid>
-
-
-          </Grid>
-          <Button
-            type="submit"
-            fullWidth
-            variant="contained"
-            color="primary"
-            className={classes.submit}
-          >
-            Sign In
-          </Button>
-
-          
-          <Grid container justifyContent="space-evenly">
-            
-            <Grid item   >
-              <Link href="#" variant="body2">
-                Forgot Password
-              </Link>
-            </Grid>
-
-            <Grid item   >
-              <Link href="#" variant="body2">
-                Don't have an account? Sign Up
-              </Link>
-            </Grid>
-
-
-            </Grid>
-
-
-
-          
-
-
-          
-        </form>
-      </div>
+  const UserLogin = () => {
+    const jsonBody = {
+      userName: userName,
+      password: password,
       
-      <Box mt={5}>
-        <Copyright />
-      </Box>
-    </Container>
+    };
+
+
+    axios
+      .post("http://localhost:8080/api/login", jsonBody)
+
+      .then((response) => {
+        if (response.status === 200) {
+          alert("Logged in sucessfully");
+        }
+      })
+      .catch((error) => {
+        console.log("Invalid Email or Password");
+      });
+  };
+
+
+
+
+
+  return (
+  <div className={classes.root}  >
+      
+      <div className={classes.mainContent}>
+          <Container component="main" maxWidth="xs">
+            <CssBaseline />
+
+
+            <div className={classes.paper}>
+
+              <Avatar className={classes.avatar}>
+                <LockOutlinedIcon />
+              </Avatar>
+
+              <Typography component="h1" variant="h5">
+                Sign In
+              </Typography>
+
+              <form className={classes.form} noValidate>
+
+                <Grid container spacing={3}  align-items="center">
+
+                    <Grid item xs={12}>
+                      <TextField
+                        variant="outlined"
+                        required
+                        fullWidth
+                        id="userName"
+                        label="userName"
+                        name="userName"
+                        autoComplete="userName"
+                      />
+                    </Grid>
+
+
+                    <Grid item xs={12}>
+                      <TextField
+                        variant="outlined"
+                        required
+                        fullWidth
+                        name="password"
+                        label="Password"
+                        type="password"
+                        id="password"
+                        autoComplete="current-password"
+                      />
+                    </Grid>
+                </Grid>
+               
+
+
+
+                <Button
+                      fullWidth
+                      variant="contained"
+                      color="primary"
+                      className={classes.submit}
+                      onClick={UserLogin}
+                      
+                      disabled={
+                        userName === "" ||
+                        password === "" 
+                        }
+                    >
+                      Sign In
+                    </Button>
+
+                
+                <Grid container justifyContent="space-evenly">
+                  
+                    <Grid item   >
+                      <Link href="#" variant="body2">
+                        Forgot Password
+                      </Link>
+                    </Grid>
+
+                    <Grid item   >
+                      <Link href="#" variant="body2">
+                        Don't have an account? Sign Up
+                      </Link>
+                    </Grid>
+
+
+                  </Grid>
+
+
+
+              </form>
     </div>
+    
+        <Box mt={5}>
+            <Copyright />
+        </Box>
+    </Container>
+  </div>
   </div>
   );
 }

@@ -77,7 +77,7 @@ export const SignUp = () => {
       role: designation,
     };
     axios
-      .post("http://localhost:8080/register", jsonBody)
+      .post("http://localhost:8080/api/register", jsonBody)
 
       .then((response) => {
         if (response.status === 200) {
