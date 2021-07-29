@@ -58,6 +58,7 @@ const useStyles = makeStyles((theme) => ({
 export const SignUp = () => {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
+  const [userName, setUserName] = useState("");
   const [errorMsg, setErrorMsg] = useState(false);
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -71,13 +72,14 @@ export const SignUp = () => {
     const jsonBody = {
       firstName: firstName,
       lastName: lastName,
+      userName: userName,
       password: password,
       emailId: emailAddress,
       phoneNo: contact,
       role: designation,
     };
     axios
-      .post("http://localhost:8080/api/register", jsonBody)
+      .post("http://localhost:8080/register", jsonBody)
 
       .then((response) => {
         if (response.status === 200) {
@@ -141,30 +143,14 @@ export const SignUp = () => {
                   variant="outlined"
                   required
                   fullWidth
-                  id="contact"
-                  label="Contact"
-                  name="contact"
-                  autoComplete="contact"
+                  id="userName"
+                  label="User Name"
+                  name="userName"
+                  autoComplete="uname"
                   onChange={(event) => {
-                    setContact(event.target.value);
+                    setUserName(event.target.value);
                   }}
-                  value={contact}
-                />
-              </Grid>
-
-              <Grid item xs={12}>
-                <TextField
-                  variant="outlined"
-                  required
-                  fullWidth
-                  id="email"
-                  label="Email Address"
-                  name="email"
-                  autoComplete="email"
-                  onChange={(event) => {
-                    setEmailAddress(event.target.value);
-                  }}
-                  value={emailAddress}
+                  value={userName}
                 />
               </Grid>
 
@@ -208,6 +194,38 @@ export const SignUp = () => {
                     }
                   }}
                   value={confirmPassword}
+                />
+              </Grid>
+
+              <Grid item xs={12}>
+                <TextField
+                  variant="outlined"
+                  required
+                  fullWidth
+                  id="email"
+                  label="Email Address"
+                  name="email"
+                  autoComplete="email"
+                  onChange={(event) => {
+                    setEmailAddress(event.target.value);
+                  }}
+                  value={emailAddress}
+                />
+              </Grid>
+
+              <Grid item xs={12}>
+                <TextField
+                  variant="outlined"
+                  required
+                  fullWidth
+                  id="contact"
+                  label="Contact"
+                  name="contact"
+                  autoComplete="contact"
+                  onChange={(event) => {
+                    setContact(event.target.value);
+                  }}
+                  value={contact}
                 />
               </Grid>
 
