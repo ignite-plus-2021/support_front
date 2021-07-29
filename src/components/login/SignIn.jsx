@@ -119,35 +119,40 @@ export default function SignIn() {
 
                 <Grid container spacing={3}  align-items="center">
 
-                    <Grid item xs={12}>
-                      <TextField
-                        variant="outlined"
-                        required
-                        fullWidth
-                        id="userName"
-                        label="userName"
-                        name="userName"
-                        autoComplete="userName"
-                      />
-                    </Grid>
+                <Grid item xs={12}>
+                <TextField
+                  autoComplete="name"
+                  name="firstName"
+                  variant="outlined"
+                  required
+                  fullWidth
+                  id="userName"
+                  label="User Name"
+                  autoFocus
+                  onChange={(event) => {
+                    setUserName(event.target.value);
+                  }}
+                  value={userName}
+                 />
+                 </Grid>
 
 
-                    <Grid item xs={12}>
-                      <TextField
-                        variant="outlined"
-                        required
-                        fullWidth
-                        name="password"
-                        label="Password"
-                        type="password"
-                        id="password"
-                        autoComplete="current-password"
-                      />
-                    </Grid>
-                </Grid>
-               
+                <Grid item xs={12}>
+                <TextField
+                  variant="outlined"
+                  required
+                  fullWidth
+                  label="Password"
+                  type="password"
+                  id="password"
+                  onChange={(event) => {
+                    setPassword(event.target.value);
+                  }}
+                  value={password}
+                  />
+                  </Grid>
 
-
+           
 
                 <Button
                       fullWidth
@@ -164,16 +169,17 @@ export default function SignIn() {
                       Sign In
                     </Button>
 
+                </Grid>
                 
-                <Grid container justifyContent="space-evenly">
+                <Grid container justifyContent="space-evenly"  >
                   
-                    <Grid item   >
+                    <Grid item  >
                       <Link href="#" variant="body2">
                         Forgot Password
                       </Link>
                     </Grid>
 
-                    <Grid item   >
+                    <Grid item >
                       <Link href="#" variant="body2">
                         Don't have an account? Sign Up
                       </Link>

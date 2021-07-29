@@ -1,32 +1,17 @@
 import React, { useState } from "react";
-import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
-import CssBaseline from "@material-ui/core/CssBaseline";
-import TextField from "@material-ui/core/TextField";
-import Link from "@material-ui/core/Link";
 import Grid from "@material-ui/core/Grid";
-import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
-import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
-import Container from "@material-ui/core/Container";
-import FormControl from "@material-ui/core/FormControl";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
-import FormLabel from "@material-ui/core/FormLabel";
-import Radio from "@material-ui/core/Radio";
-import RadioGroup from "@material-ui/core/RadioGroup";
 import axios from "axios";
 import SaveIcon from '@material-ui/icons/Save';
 import AddAPhotoIcon from '@material-ui/icons/AddAPhoto';
 import AirplayIcon from '@material-ui/icons/Airplay';
+import { useHistory  as UseHistory} from "react-router-dom";
 
 
 
 const UseStyles = makeStyles((theme) => ({
  
-root:{
-   
-},
-
 
 button:{
 margin:theme.spacing(3),
@@ -39,12 +24,9 @@ height:"140px",
 
 },
 
-p:{
-fontStyle:"bold",
-}
-
  
 }));
+
 
 
 
@@ -52,6 +34,10 @@ fontStyle:"bold",
  export const homePage = () => {
 
     const classes = UseStyles();
+    let history = UseHistory();
+
+
+
 
   return (
     <div className={classes.root}>
@@ -65,7 +51,9 @@ fontStyle:"bold",
                 color="primary"
                 size="large"
                 className={classes.button}
-               
+                onClick={()=>{
+                    history.push("/login");
+                }}
             >
                 <div className={classes.buttonlabel}>
                     <p>Accessing from Mobile?</p>
@@ -82,7 +70,9 @@ fontStyle:"bold",
                 color="primary"
                 size="large"
                 className={classes.button}
-                
+                onClick={()=>{
+                    history.push("/");
+                }}
             >
                 <div className={classes.buttonlabel}>
                     <p>Accessing from Desktop?</p>
@@ -97,6 +87,9 @@ fontStyle:"bold",
                 color="primary"
                 size="large"
                 className={classes.button}
+                onClick={()=>{
+                    history.push("/");
+                }}
             >
                 <div className={classes.buttonlabel}>
                     <p> My Requests</p>
@@ -109,6 +102,9 @@ fontStyle:"bold",
                 color="primary"
                 size="large"
                 className={classes.button}
+                onClick={()=>{
+                    history.push("/");
+                }}
             >
                 <div className={classes.buttonlabel}>
                     <p>Admin Dashboard</p>
