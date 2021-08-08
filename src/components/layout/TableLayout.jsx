@@ -25,14 +25,14 @@ const StyledTableRow = withStyles((theme) => ({
   },
 }))(TableRow);
 
-function createData(Number, Name, State, ShortDescription, DateCreated) {
-  return { Number, Name, State, ShortDescription, DateCreated };
+function createData(Number, Name, State,AssignedTo,ShortDescription, DateCreated) {
+  return { Number, Name, State,AssignedTo, ShortDescription, DateCreated };
 }
 
 const rows = [
-  createData("REQ0456", "JACK", "ACTIVE", "TAP NOT WORKING", "6/5/2021"),
-  createData("REQ0678", "MICHEAL", "ACTIVE", "TAP NOT WORKING", "6/5/2021"),
-  createData("REQ0987", "DEPP", "COMPLETED", "FAN NOT  WORKING", "6/5/2021"),
+  createData("REQ0456", "JACK", "ACTIVE"," ", "TAP NOT WORKING", "6/5/2021"),
+  createData("REQ0678", "MICHEAL", "ACTIVE","Shane", "TAP NOT WORKING", "6/5/2021"),
+  createData("REQ0987", "DEPP", "COMPLETED","Richard", "FAN NOT  WORKING", "6/5/2021"),
 ];
 
 const useStyles = makeStyles({
@@ -57,6 +57,7 @@ export const TableLayout = () => {
           <StyledTableCell align="right">Name</StyledTableCell>
           <StyledTableCell align="right">State</StyledTableCell>
           <StyledTableCell align="right">Short Description</StyledTableCell>
+          <StyledTableCell align="right">Assigned to</StyledTableCell>
           <StyledTableCell align="right">Date Created</StyledTableCell>
         </TableRow>
       </TableHead>
@@ -72,6 +73,7 @@ export const TableLayout = () => {
             <StyledTableCell align="right">
               {row.ShortDescription}
             </StyledTableCell>
+            <StyledTableCell align="right">{row.AssignedTo}</StyledTableCell>
             <StyledTableCell align="right">{row.DateCreated}</StyledTableCell>
           </StyledTableRow>
         ))}

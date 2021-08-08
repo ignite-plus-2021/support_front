@@ -1,4 +1,5 @@
-import React from "react";
+
+import React, { useState } from "react";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import TextField from "@material-ui/core/TextField";
@@ -11,6 +12,9 @@ import InputLabel from "@material-ui/core/InputLabel";
 import MenuItem from "@material-ui/core/MenuItem";
 import Select from "@material-ui/core/Select";
 import CloudUploadIcon from "@material-ui/icons/CloudUpload";
+import axios from "axios";
+
+
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -25,44 +29,163 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: theme.shape.borderRadius,
     boxShadow: "1px 1px 4px 4px #115293",
   },
+
   form: {
     width: "100%",
     marginTop: theme.spacing(3),
   },
+
   submit: {
     margin: theme.spacing(3, 0, 2),
   },
+
+
   root: {
     flexGrow: 1,
   },
+
   menuButton: {
     marginRight: theme.spacing(2),
   },
+
   title: {
     flexGrow: 1,
   },
+
   formControl: {
     width: 245,
   },
+
   selectEmpty: {
     marginTop: theme.spacing(2),
   },
+
   mainContent: {
     padding: "2%",
     alignItems: "center",
   },
+
+
 }));
+
 
 export default function RequestForm() {
   const classes = useStyles();
+  const [name, setname] = useState("Jack");
+  const [description, setdescription] = useState("");
+  const [requestid, setrequestid] = useState("REQ0073");
+  const [requeststate, setrequeststate] = useState("Active");
+
+
+  const [service, setservice] = React.useState("");
   const [impacted_service, setimpacted_service] = React.useState("");
   const handleChange = (event) => {
     setimpacted_service(event.target.value);
   };
+
+
+
+  const [location, setlocation] = React.useState("");
   const [request_location, setrequest_location] = React.useState("");
   const handleChanges = (event) => {
     setrequest_location(event.target.value);
   };
+
+
+
+
+  const fetchlocations= () => {
+   
+    axios
+      .get("http://localhost:8080/locations")
+       .then((response) => {
+          setlocation(response.data);
+
+           console.log(response);
+
+        if (response.status === 200) {
+          alert("Values fetched sucessfully");
+        }
+      })
+      .catch((error) => {
+        console.log(error.message);
+      });
+
+         
+  };
+
+
+
+  
+  const fetchservices= () => {
+   
+    axios
+      .get("http://localhost:8080/services")
+       .then((response) => {
+          setservice(response.data);
+
+           console.log(response);
+
+        if (response.status === 200) {
+          alert("Values fetched sucessfully");
+        }
+      })
+      .catch((error) => {
+        console.log(error.message);
+      });
+
+         
+  };
+
+
+
+
+
+  // const requestername = () => {
+  //   const jsonBody = {
+  //     username:username
+  //   };
+  //   axios
+  //     .get("http://localhost:8080/username")
+  // };
+
+
+
+
+
+const NewRequest = () => {
+  const jsonBody = {
+    requestid: requestid,
+    name:name,
+    requeststate: requeststate,
+    impacted_service: impacted_service,
+    request_location: request_location,
+    description: description,
+    //photo
+    //document
+
+
+  };
+  
+  axios
+    .post("http://localhost:8080/newrequest", jsonBody)
+
+    .then((response) => {
+      if (response.status === 200) {
+        alert("New Request Generated");
+      }
+    })
+    .catch((error) => {
+      console.log(error.message);
+    });
+};
+
+
+
+
+
+
+
 
   return (
     <div className={classes.root}>
@@ -82,7 +205,7 @@ export default function RequestForm() {
                     fullWidth
                     id="request_id"
                     label="Request Id"
-                    defaultValue="REQ0789"
+                    defaultValue={requestid}
                     InputProps={{
                       readOnly: true,
                     }}
@@ -97,7 +220,7 @@ export default function RequestForm() {
                     fullWidth
                     id="request_state"
                     label="Request State"
-                    defaultValue="Active"
+                    defaultValue={requeststate}
                     InputProps={{
                       readOnly: true,
                     }}
@@ -110,7 +233,7 @@ export default function RequestForm() {
                     fullWidth
                     id="name"
                     label="Requester Name"
-                    defaultValue="Jack"
+                    value={name}
                     InputProps={{
                       readOnly: true,
                     }}
@@ -150,7 +273,6 @@ export default function RequestForm() {
                       Request Location
                     </InputLabel>
                     <Select
-                      labelId="request_location-label"
                       id="request_location"
                       value={request_location}
                       onChange={handleChanges}
@@ -197,6 +319,10 @@ export default function RequestForm() {
                     id="description"
                     label="Short Description"
                     name="description"
+                    onChange={(event) => {
+                      setdescription(event.target.value);
+                    }}
+                    value={description}
                   />
                 </Grid>
 
@@ -222,7 +348,6 @@ export default function RequestForm() {
 
                 <Grid item xs={12}>
                   <input
-                    accept="image/*"
                     className={classes.input}
                     id="contained-button-file"
                     multiple

@@ -1,9 +1,11 @@
-import React from "react";
+import React ,{ useState } from "react";
 import Button from "@material-ui/core/Button";
 import { makeStyles } from "@material-ui/core/styles";
 import { useHistory as UseHistory } from "react-router-dom";
  import {TableLayout} from "../layout/TableLayout";
 import Grid from "@material-ui/core/Grid";
+import axios from "axios";
+
 
 const UseStyles = makeStyles((theme) => ({
   button: {
@@ -20,6 +22,38 @@ const UseStyles = makeStyles((theme) => ({
 export const MyRequests = () => {
   const classes = UseStyles();
   let history = UseHistory();
+
+
+
+
+  const [requests, setrequests] = useState("");
+  const fetchAllRequests = () => {
+   
+    axios
+      .get("http://localhost:8080/myrequests")
+       .then((response) => {
+        
+        setrequests(response.data);
+        ///Print all the requests  to console
+        console.log(response);
+
+
+        if (response.status === 200) {
+          alert("Values fetched sucessfully");
+        }
+      })
+      .catch((error) => {
+        console.log(error.message);
+      });
+
+        
+         
+  };
+
+
+
+
+
 
   return (
     <div className={classes.root}>
