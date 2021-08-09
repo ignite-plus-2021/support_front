@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import Avatar from "@material-ui/core/Avatar";
-
+import Select from "@material-ui/core/Select";
 import CssBaseline from "@material-ui/core/CssBaseline";
-
+import MenuItem from "@material-ui/core/MenuItem";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
@@ -57,16 +57,41 @@ const useStyles = makeStyles((theme) => ({
 
 export const GetUsers = () => {
  
-    const [users, setusers] = useState("");
-  const classes = useStyles();
+    const [locations, setLocations] = useState([]);
+    const [services, setServices] = useState([]);
 
-  //Method to call endpoint and register
-  const fetchUsers = () => {
+
+     const classes = useStyles();
+
+  
+  // const fetchLocations = () => {
+   
+  //   axios
+  //     .get("http://localhost:8080/locations")
+  //      .then((response) => {
+  //         setLocations(response.data);
+
+  //          console.log(response);
+
+  //       if (response.status === 200) {
+  //         alert("Values fetched sucessfully");
+  //       }
+  //     })
+  //     .catch((error) => {
+  //       console.log(error.message);
+  //     });
+
+         
+  // };
+
+
+
+  const fetchServices = () => {
    
     axios
       .get("http://localhost:8080/services")
        .then((response) => {
-          setusers(response.data);
+          setServices(response.data);
 
            console.log(response);
 
@@ -81,6 +106,38 @@ export const GetUsers = () => {
          
   };
 
+
+  // useEffect(() => {
+  //    fetch('http://localhost:8080/services',
+  //    {
+  //      method:'Get',
+  //      headers:{
+  //        'Content-Type':'application/json',
+  //      }
+  //    })
+  //    .then(resp=>resp.json())
+  //    .then(resp=>setServices(resp))
+
+     
+  //   },[])
+
+
+
+
+  //   useEffect(() => {
+  //     fetch('http://localhost:8080/locations',
+  //     {
+  //       method:'Get',
+  //       headers:{
+  //         'Content-Type':'application/json',
+  //       }
+  //     })
+  //     .then(resp=>resp.json())
+  //     .then(resp=>setLocations(resp))
+  //    },[])
+     
+
+
   return (
     <div className={classes.root}>
       <Container component="main" maxWidth="xs">
@@ -89,12 +146,48 @@ export const GetUsers = () => {
           <Avatar className={classes.avatar}>
             <LockOutlinedIcon />
           </Avatar>
-          <Typography component="h1" variant="h5">
-          Get All  users
-          </Typography>
+         
              
-            <h1>Hello world</h1>
-            <button onClick={fetchUsers}>users</button>
+          
+            { /*<button onClick={fetchLocations}>Locations</button> */}
+             <div>
+              
+              
+               <Select
+                      labelId="impacted_service-label"
+                      id="impacted_service"
+                      value={locations}
+                      
+                      label="Impacted Service"
+                      fullWidth
+                    >
+                      {
+                      locations.map(location=> ( 
+                      <MenuItem >{location.buildingName} {location.floor}</MenuItem>
+                       ))
+                       }
+                     
+               </Select>
+
+
+               {/* { <button onClick={fetchServices}>Services</button> } */}
+               { <Select
+                      labelId="impacted_service-label"
+                      id="impacted_service"
+                      value={services}
+                      
+                      label="Impacted Service"
+                      fullWidth
+                    >
+                      {
+                       services.map(service=> ( 
+                      <MenuItem >{ service.impactedService}</MenuItem>
+                       ))
+                       }
+                     
+               </Select> }
+            </div>
+
 
 
 

@@ -1,5 +1,5 @@
 
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import TextField from "@material-ui/core/TextField";
@@ -91,51 +91,8 @@ export default function RequestForm() {
     setrequest_location(event.target.value);
   };
 
-
-
-
-  const fetchlocations= () => {
-   
-    axios
-      .get("http://localhost:8080/locations")
-       .then((response) => {
-          setlocation(response.data);
-
-           console.log(response);
-
-        if (response.status === 200) {
-          alert("Values fetched sucessfully");
-        }
-      })
-      .catch((error) => {
-        console.log(error.message);
-      });
-
-         
-  };
-
-
-
-  
-  const fetchservices= () => {
-   
-    axios
-      .get("http://localhost:8080/services")
-       .then((response) => {
-          setservice(response.data);
-
-           console.log(response);
-
-        if (response.status === 200) {
-          alert("Values fetched sucessfully");
-        }
-      })
-      .catch((error) => {
-        console.log(error.message);
-      });
-
-         
-  };
+  const [locations, setLocations] = useState([]);
+  const [services, setServices] = useState([]);
 
 
 
@@ -150,6 +107,33 @@ export default function RequestForm() {
   // };
 
 
+
+  useEffect(() => {
+    fetch('http://localhost:8080/services',
+    {
+      method:'Get',
+      headers:{
+        'Content-Type':'application/json',
+      }
+    })
+    .then(resp=>resp.json())
+    .then(resp=>setServices(resp))
+
+    
+   },[])
+
+
+   useEffect(() => {
+    fetch('http://localhost:8080/locations',
+    {
+      method:'Get',
+      headers:{
+        'Content-Type':'application/json',
+      }
+    })
+    .then(resp=>resp.json())
+    .then(resp=>setLocations(resp))
+   },[])
 
 
 
@@ -256,10 +240,11 @@ const NewRequest = () => {
                       label="Impacted Service"
                       fullWidth
                     >
-                      <MenuItem value={"Rest Room"}>Rest Room</MenuItem>
-                      <MenuItem value={"Meeting Room"}>Meeting Room</MenuItem>
-                      <MenuItem value={"Common Area"}>Common Area</MenuItem>
-                      <MenuItem value={"Cafeteria"}>Cafeteria</MenuItem>
+                    {
+                       services.map(service=> ( 
+                      <MenuItem >{ service.impactedService}</MenuItem>
+                       ))
+                       }
                     </Select>
                   </FormControl>
                 </Grid>
@@ -279,21 +264,11 @@ const NewRequest = () => {
                       label="Request Location"
                       fullWidth
                     >
-                      <MenuItem value={"GWS Ground Floor"}>
-                        GWS Ground Floor
-                      </MenuItem>
-                      <MenuItem value={"GWS First Floor"}>
-                        GWS First Floor
-                      </MenuItem>
-                      <MenuItem value={"GWS Second Floor"}>
-                        GWS Second Floor
-                      </MenuItem>
-                      <MenuItem value={"GWS Third Floor"}>
-                        GWS Third Floor
-                      </MenuItem>
-                      <MenuItem value={"GWS Parking Lot"}>
-                        GWS Parking Lot
-                      </MenuItem>
+                      {
+                      locations.map(location=> ( 
+                      <MenuItem >{location.buildingName} {location.floor}</MenuItem>
+                       ))
+                       }
                     </Select>
                   </FormControl>
                 </Grid>
@@ -304,9 +279,11 @@ const NewRequest = () => {
                     fullWidth
                     id="assigned_to"
                     label="Assigned To"
-                    defaultValue="Facilities Team"
+                     defaultValue="Facilities Team"
+                    // value={services.impactedService}
                     InputProps={{
                       readOnly: true,
+                     
                     }}
                   />
                 </Grid>
