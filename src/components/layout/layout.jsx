@@ -21,7 +21,7 @@ import SignUp from "../login/SignUp";
 import HomePage from "../utilities/HomePage";
 import SignIn from "../login/SignIn";
 import MyRequests from "../utilities/MyRequests";
-import {AllRequests } from "../utilities/AllRequests";
+import { AllRequests } from "../utilities/AllRequests";
 import RequestForm from "../utilities/RequestForm";
 
 const drawerWidth = 240;
