@@ -1,4 +1,8 @@
+<<<<<<< Updated upstream
 import React from "react";
+=======
+import React, { useState } from "react";
+>>>>>>> Stashed changes
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import TextField from "@material-ui/core/TextField";
@@ -11,6 +15,10 @@ import InputLabel from "@material-ui/core/InputLabel";
 import MenuItem from "@material-ui/core/MenuItem";
 import Select from "@material-ui/core/Select";
 import CloudUploadIcon from "@material-ui/icons/CloudUpload";
+<<<<<<< Updated upstream
+=======
+import axios from "axios";
+>>>>>>> Stashed changes
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -32,6 +40,10 @@ const useStyles = makeStyles((theme) => ({
   submit: {
     margin: theme.spacing(3, 0, 2),
   },
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
   root: {
     flexGrow: 1,
   },
@@ -51,19 +63,110 @@ const useStyles = makeStyles((theme) => ({
     padding: "2%",
     alignItems: "center",
   },
+<<<<<<< Updated upstream
+=======
+
+  // input: {
+  //   display: "none",
+  // },
+>>>>>>> Stashed changes
 }));
 
 export default function RequestForm() {
   const classes = useStyles();
+<<<<<<< Updated upstream
+=======
+  const [name, setname] = useState("Jack");
+  const [description, setdescription] = useState("");
+  const [requestid, setrequestid] = useState("REQ0073");
+  const [requeststate, setrequeststate] = useState("Active");
+
+  const [service, setservice] = React.useState("");
+>>>>>>> Stashed changes
   const [impacted_service, setimpacted_service] = React.useState("");
   const handleChange = (event) => {
     setimpacted_service(event.target.value);
   };
+<<<<<<< Updated upstream
+=======
+
+  const [location, setlocation] = React.useState("");
+>>>>>>> Stashed changes
   const [request_location, setrequest_location] = React.useState("");
   const handleChanges = (event) => {
     setrequest_location(event.target.value);
   };
 
+<<<<<<< Updated upstream
+=======
+  const fetchlocations = () => {
+    axios
+      .get("http://localhost:8080/locations")
+      .then((response) => {
+        setlocation(response.data);
+
+        console.log(response);
+
+        if (response.status === 200) {
+          alert("Values fetched sucessfully");
+        }
+      })
+      .catch((error) => {
+        console.log(error.message);
+      });
+  };
+
+  const fetchservices = () => {
+    axios
+      .get("http://localhost:8080/services")
+      .then((response) => {
+        setservice(response.data);
+
+        console.log(response);
+
+        if (response.status === 200) {
+          alert("Values fetched sucessfully");
+        }
+      })
+      .catch((error) => {
+        console.log(error.message);
+      });
+  };
+
+  // const requestername = () => {
+  //   const jsonBody = {
+  //     username:username
+  //   };
+  //   axios
+  //     .get("http://localhost:8080/username")
+  // };
+
+  const NewRequest = () => {
+    const jsonBody = {
+      requestid: requestid,
+      name: name,
+      requeststate: requeststate,
+      impacted_service: impacted_service,
+      request_location: request_location,
+      description: description,
+      //photo
+      //document
+    };
+
+    axios
+      .post("http://localhost:8080/newrequest", jsonBody)
+
+      .then((response) => {
+        if (response.status === 200) {
+          alert("New Request Generated");
+        }
+      })
+      .catch((error) => {
+        console.log(error.message);
+      });
+  };
+
+>>>>>>> Stashed changes
   return (
     <div className={classes.root}>
       <div className={classes.mainContent}>
