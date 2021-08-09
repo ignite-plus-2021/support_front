@@ -1,4 +1,4 @@
-import React,{useState} from "react";
+import React,{useState,useEffect} from "react";
 import Button from "@material-ui/core/Button";
 import { makeStyles } from "@material-ui/core/styles";
 import { useHistory as UseHistory } from "react-router-dom";
@@ -25,33 +25,94 @@ const UseStyles = makeStyles((theme) => ({
   },
 }));
 
+
+
+
+
+
+
+
+
+
+
+
+
+
 export const AllRequests = () => {
   const classes = UseStyles();
   let history = UseHistory();
 
-  const [requests, setrequests] = useState("");
-  const fetchAllRequests = () => {
+  //const [requests, setrequests] = useState("");
+  // const fetchAllRequests = () => {
    
-    axios
-      .get("http://localhost:8080/allrequests")
-       .then((response) => {
+  //   axios
+  //     .get("http://localhost:8080/allrequests")
+  //      .then((response) => {
         
-        setrequests(response.data);
-        ///Print all the requests  to console
-        console.log(response);
+  //       setrequests(response.data);
+  //       ///Print all the requests  to console
+  //       console.log(response);
 
 
-        if (response.status === 200) {
-          alert("Values fetched sucessfully");
-        }
-      })
-      .catch((error) => {
-        console.log(error.message);
-      });
+  //       if (response.status === 200) {
+  //         alert("Values fetched sucessfully");
+  //       }
+  //     })
+  //     .catch((error) => {
+  //       console.log(error.message);
+  //     });
 
         
          
-  };
+  // };
+
+
+
+  const [requests, setRequests] = useState([]);
+
+  useEffect(() => {
+    fetch('http://localhost:8080/allrequests',
+    {
+      method:'Get',
+      headers:{
+        'Content-Type':'application/json',
+      }
+    })
+    .then(resp=>resp.json())
+    .then(resp=>setRequests(resp))
+
+    
+   },[])
+
+
+
+
+
+
+
+
+
+  const rows =[
+    {
+   "Number":"REQ0456",
+   "Name":"Jack",
+   "State": "ACTIVE",
+   "ShortDescription":"Tap not working",
+   "AssignedTo":"Facilities Team",
+   "DateCreated":"05-06-2021"
+
+    
+    },
+    {
+      "Number":"REQ0486",
+      "Name":"Lilly",
+      "State": "ACTIVE",  
+      "ShortDescription":"fan not working",
+      "AssignedTo":"Facilities Team",
+      "DateCreated":"08-06-2021"
+       }
+
+];
 
 
 
@@ -118,8 +179,8 @@ export const AllRequests = () => {
           </Button>
         </Grid>
       </Grid>
-
-      {/* {<TableLayout /> } */}
+        <TableLayout rows={rows}/> 
+     
       
     </div>
   );

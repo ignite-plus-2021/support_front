@@ -279,7 +279,7 @@ const NewRequest = () => {
                     fullWidth
                     id="assigned_to"
                     label="Assigned To"
-                     defaultValue="Facilities Team"
+                    defaultValue="Facilities Team"
                     // value={services.impactedService}
                     InputProps={{
                       readOnly: true,
@@ -361,6 +361,12 @@ const NewRequest = () => {
                     color="primary"
                     className={classes.submit}
                     fullWidth
+                    onClick={NewRequest}
+                    disabled={
+                    request_location === "" ||
+                    impacted_service === "" ||
+                    description === ""
+                    }
                   >
                     Submit
                   </Button>

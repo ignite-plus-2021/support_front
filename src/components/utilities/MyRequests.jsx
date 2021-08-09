@@ -74,12 +74,28 @@ export const MyRequests = () => {
     return { Number, Name, State,AssignedTo, ShortDescription, DateCreated };
   }
 
-   const rows = {
+   const rows =[
+      {
      "Number":"REQ0456",
-     "State": "ACTIVE"
-      
-   };
+     "Name":"Jack",
+     "State": "ACTIVE",
+     "ShortDescription":"Tap not working",
+     "AssignedTo":"Facilities Team",
+     "DateCreated":"05-06-2021"
 
+      
+      },
+      {
+        "Number":"REQ0486",
+        "Name":"Jack",
+        "State": "ACTIVE",  
+        "ShortDescription":"fan not working",
+        "AssignedTo":"Facilities Team",
+        "DateCreated":"08-06-2021"
+         }
+  
+  ];
+   
 
   return (
     <div className={classes.root}>
@@ -99,7 +115,7 @@ export const MyRequests = () => {
         </Grid>
 
         <Grid item xs={12}>
-          <TableLayout />
+          <TableLayout rows={rows} />
         </Grid> 
       </Grid>
     </div>
