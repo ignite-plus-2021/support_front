@@ -2,8 +2,9 @@ import React from "react";
 import Button from "@material-ui/core/Button";
 import { makeStyles } from "@material-ui/core/styles";
 import { useHistory as UseHistory } from "react-router-dom";
- import {TableLayout} from "../layout/TableLayout";
+import { TableLayout } from "../layout/TableLayout";
 import Grid from "@material-ui/core/Grid";
+import { useSelector } from "react-redux";
 
 const UseStyles = makeStyles((theme) => ({
   button: {
@@ -18,6 +19,10 @@ const UseStyles = makeStyles((theme) => ({
 }));
 
 export const MyRequests = () => {
+  const loggedInUserName = useSelector(
+    (state) => state.common.loggedInUserName
+  );
+  console.log(loggedInUserName);
   const classes = UseStyles();
   let history = UseHistory();
 
@@ -38,9 +43,11 @@ export const MyRequests = () => {
           </Button>
         </Grid>
 
-        { <Grid item xs={12}>
-          <TableLayout />
-        </Grid> }
+        {
+          <Grid item xs={12}>
+            <TableLayout />
+          </Grid>
+        }
       </Grid>
     </div>
   );

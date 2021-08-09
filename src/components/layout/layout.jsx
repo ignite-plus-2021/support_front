@@ -6,6 +6,9 @@ import Toolbar from "@material-ui/core/Toolbar";
 import IconButton from "@material-ui/core/IconButton";
 import HomeIcon from "@material-ui/icons/Home";
 import MenuIcon from "@material-ui/icons/Menu";
+import LoupeIcon from "@material-ui/icons/Loupe";
+import CreateIcon from "@material-ui/icons/Create";
+import PersonIcon from "@material-ui/icons/Person";
 import Typography from "@material-ui/core/Typography";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import ChevronRightIcon from "@material-ui/icons/ChevronRight";
@@ -205,8 +208,34 @@ export const Layout = () => {
         <Divider />
         <List>
           <ListItemLink primary="Home" to="/" icon={<HomeIcon />} open={open} />
+
+          <ListItemLink
+            primary="My Requests"
+            to="/myrequests"
+            icon={<PersonIcon />}
+            open={open}
+          />
+
+          <ListItemLink
+            primary="Request Form"
+            to="/requestform"
+            icon={<CreateIcon />}
+            open={open}
+          />
+          <Divider />
+          <ListItemLink
+            primary="Login"
+            to="/login"
+            icon={<PersonIcon />}
+            open={open}
+          />
+          <ListItemLink
+            primary="Register"
+            to="/register"
+            icon={<LoupeIcon />}
+            open={open}
+          />
         </List>
-        <Divider />
       </Drawer>
       <main className={classes.content}>
         <div className={classes.appBarSpacer} />

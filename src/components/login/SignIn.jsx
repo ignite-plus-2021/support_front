@@ -10,6 +10,7 @@ import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
+import { useDispatch } from "react-redux";
 import axios from "axios";
 
 function Copyright() {
@@ -71,18 +72,28 @@ export default function SignIn() {
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
   const classes = useStyles();
+  const dispatch = useDispatch();
 
   const UserLogin = () => {
     const jsonBody = {
       userName: userName,
       password: password,
     };
+    console.log(jsonBody);
+    dispatch({
+      type: "SET_USERNAME",
+      data: userName,
+    });
 
     axios
       .post("http://localhost:8080/api/login", jsonBody)
 
       .then((response) => {
         if (response.status === 200) {
+          dispatch({
+            type: "SET_USERNAME",
+            data: userName,
+          });
           alert("Logged in sucessfully");
         }
       })

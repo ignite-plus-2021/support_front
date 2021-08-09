@@ -4,8 +4,7 @@ import Button from "@material-ui/core/Button";
 import Grid from "@material-ui/core/Grid";
 import { makeStyles } from "@material-ui/core/styles";
 import AddAPhotoIcon from "@material-ui/icons/AddAPhoto";
-import AirplayIcon from "@material-ui/icons/Airplay";;
-
+import AirplayIcon from "@material-ui/icons/Airplay";
 
 const UseStyles = makeStyles((theme) => ({
   button: {
