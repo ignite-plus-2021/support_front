@@ -420,10 +420,9 @@ import Container from "@material-ui/core/Container";
 import FormControl from "@material-ui/core/FormControl";
 import InputLabel from "@material-ui/core/InputLabel";
 import MenuItem from "@material-ui/core/MenuItem";
-import Select from "@material-ui/core/Select";
-import CloudUploadIcon from "@material-ui/icons/CloudUpload";
 import axios from "axios";
-
+import AddAPhotoIcon from '@material-ui/icons/AddAPhoto';
+import DescriptionIcon from '@material-ui/icons/Description';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -496,17 +495,18 @@ export default function RequestForm() {
   const [services, setServices] = useState([]);
 
 
+  let fd=new FormData();
+  const photoSelectedHandler = (event) =>
+    {
+      fd.append('file', event.target.files[0], event.target.files[0].name );
+    }
 
-
-
-  // const requestername = () => {
-  //   const jsonBody = {
-  //     username:username
-  //   };
-  //   axios
-  //     .get("http://localhost:8080/username")
-  // };
-
+  
+  let cd=new FormData();
+  const docSelectedHandler = (event) =>
+    {        
+      cd.append('file', event.target.files[0], event.target.files[0].name );
+    }
 
 
   useEffect(() => {
@@ -559,23 +559,28 @@ export default function RequestForm() {
    },[])
 
 
+let axiosConfig = {
+    headers: {
+        'Content-Type': 'application/json;charset=UTF-8',
+        // "Access-Control-Allow-Origin": "*",
+    }
+  };
+
 
 const NewRequest = () => {
-  const jsonBody = {
+  const postData = {
     requestid: requestid,
     name:name,
     requeststate: requeststate,
     impacted_service: impacted_service,
     request_location: request_location,
     description: description,
-    //photo
-    //document
-
-
+    photo: fd,
+    document: cd
   };
 
   axios
-    .post("http://localhost:8080/newrequest", jsonBody)
+    .post("http://localhost:8080/newrequest", postData,axiosConfig)
 
     .then((response) => {
       if (response.status === 200) {
@@ -595,161 +600,140 @@ console.log(services)
 
 
 
-  return (
-    <div className={classes.root}>
-      <div className={classes.mainContent}>
-        <Container component="main" maxWidth="xs">
-          <CssBaseline />
-          <div className={classes.paper}>
-            <Typography component="h1" variant="h5">
-              Request Form
-            </Typography>
-            <form className={classes.form} noValidate>
-              <Grid container spacing={3}>
+return (
+  <div className={classes.root}>
+    <div className={classes.mainContent}>
+      <Container component="main" maxWidth="xs">
+        <CssBaseline />
+        <div className={classes.paper}>
+          <Typography component="h1" variant="h5">
+            Request Form
+          </Typography>
+          <form className={classes.form} noValidate>
+           
+           
+            <Grid container spacing={3}>
+              <Grid item xs={12} sm={6}>
+                <TextField
+                  variant="outlined"
+                  required
+                  fullWidth
+                  id="request_id"
+                  label="Request Id"
+                value={requestid}
+                  InputProps={{
+                    readOnly: true,
+                  }}
+                 
+                />
+              </Grid>
+
+
+              <Grid item xs={12} sm={6}>
+                <TextField
+                  variant="outlined"
+                  required
+                  fullWidth
+                  id="request_state"
+                  label="Request State"
+                  defaultValue={requeststate}
+                  InputProps={{
+                    readOnly: true,
+                  }}
+                />
+              </Grid>
+
+
+              <Grid item xs={12} sm={6}>
+                <TextField
+                  variant="outlined"
+                  required
+                  fullWidth
+                  id="name"
+                  label="Requester Name"
+                  value={name}
+                  InputProps={{
+                    readOnly: true,
+                  }}
+                />
+              </Grid>
+
+             
+             
+  
+
+
                 <Grid item xs={12} sm={6}>
-                  <TextField
-                    variant="outlined"
-                    required
-                    fullWidth
-                    id="request_id"
-                    label="Request Id"
-                    defaultValue={requestid}
-                    InputProps={{
-                      readOnly: true,
-                    }}
-                    autoFocus
-                  />
-                </Grid>
-
-                <Grid item xs={12} sm={6}>
-                  <TextField
-                    variant="outlined"
-                    required
-                    fullWidth
-                    id="request_state"
-                    label="Request State"
-                    defaultValue={requeststate}
-                    InputProps={{
-                      readOnly: true,
-                    }}
-                  />
-                </Grid>
-                <Grid item xs={12} sm={6}>
-                  <TextField
-                    variant="outlined"
-                    required
-                    fullWidth
-                    id="name"
-                    label="Requester Name"
-                    value={name}
-                    InputProps={{
-                      readOnly: true,
-                    }}
-                  />
-                </Grid>
-
-                <Grid item xs={12} sm={6}>
-                  <FormControl
-                    variant="outlined"
-                    className={classes.formControl}
-                  >
-                    <InputLabel id="impacted_service-label">
-                      Impacted Service
-                    </InputLabel>
-                    <Select
-                      labelId="impacted_service-label"
-                      id="impacted_service"
-                      onChange={(event) => {
-                      setimpacted_service(event.target.value);
-                       }}
-                      value={impacted_service}
-                      label="Impacted Service"
-                      fullWidth
-                    >
-                    {
-                       services.map(service=> ( 
-                      <MenuItem value={service.serviceid}>{ service.impactedService}</MenuItem>
-                       ))
-                       }
-                    </Select>
-                  </FormControl>
-                </Grid>
-
-                {/* { <Grid item xs={12} sm={6}>
-                  {<FormControl
-                    variant="outlined"
-                    className={classes.formControl}
-                  >
-                    { <InputLabel id="request_location-label">
-                      Request Location
-                    </InputLabel> }
-                    { <Select
-                      id="request_location"
-                     onChange={(event) => {
-                     setrequest_location(event.target.value);
-                      console.log("Event==="+event.target.value);
-                         }}  
-                      value={request_location}
-                       
-                      label="Request Location"
-                      fullWidth
-                    >
-                      {
-                      locations.map(location=> ( 
-                      <MenuItem >{location.buildingName} {location.floor}</MenuItem>
-                       ))
-                       }
-     </Select> } } }
-     { </Grid>  </FormControl> } */}
-    
-
-
-
-
-                         <TextField value={request_location} 
-                          id="request_location"
-                          onChange= {(event)=>{setrequest_location(event.target.value)}}
-                          select
-                          label="Request Location"
-                          variant="outlined"
-                        >
-                       
-                       {locations.map(option => (
-                      <MenuItem
-                        // style={{
-                          
-                        // }}
-                       key={option.locationId}
-                      value={option.locationId}
+                       <TextField value={impacted_service} 
+                        id="impacted_service-label"
+                        onChange= {
+                          (event)=>{setimpacted_service(event.target.value)}
+                        }
+                        select
+                        label=" Impacted Service"
+                        variant="outlined"
+                        fullWidth
                       >
-                       {option.buildingName} {option.floor}
-                      </MenuItem>
                      
-                    ))}
-                     </TextField>
-
+                     {services.map(option => (
+                    <MenuItem
+                       key={option.serviceId}
+                    value={option.serviceId}
+                    >
+                    {option.impactedService}
+                    </MenuItem>
                    
-               
+                  ))}
+                   </TextField>
+                   </Grid>
+
+                    <Grid item xs={12} sm={6}>
+                       <TextField value={request_location} 
+                        id="request_location"
+                        onChange= {(event)=>{setrequest_location(event.target.value)}}
+                        select
+                        label="Request Location"
+                        variant="outlined"
+                        fullWidth
+                      >
+                     
+                     {locations.map(option => (
+                    <MenuItem
+                     key={option.locationId}
+                    value={option.locationId}
+                    >
+                     {option.buildingName} {option.floor}
+                    </MenuItem>
+                   
+                  ))}
+                   </TextField>
+                   </Grid>
+
+                 
+             
+              
+              
+
+
+
+
+              <Grid item xs={12} sm={6}>
+                <TextField
+                  variant="outlined"
+                  fullWidth
+                  id="assigned_to"
+                  label="Assigned To"
+                  defaultValue="Facilities Team"
+                  
+                  InputProps={{
+                    readOnly: true,
+
+                  }}
+                />
+              </Grid>
+
+
                 
-                
-
-
-
-
-                <Grid item xs={12} sm={6}>
-                  <TextField
-                    variant="outlined"
-                    fullWidth
-                    id="assigned_to"
-                    label="Assigned To"
-                    defaultValue="Facilities Team"
-                    
-                    InputProps={{
-                      readOnly: true,
-
-                    }}
-                  />
-                </Grid>
 
                 <Grid item xs={12}>
                   <TextField
@@ -764,48 +748,37 @@ console.log(services)
                     }}
                     value={description}
                   />
+                 
+                </Grid>
+                
+
+                <Grid container direction="row" alignItems="center" item xs={12} spacing={2}>
+                <Grid item>
+                <input accept="image/*" multiple type="file" onChange={photoSelectedHandler}/>
+                </Grid>
+                <Grid item>
+                <AddAPhotoIcon />
+                </Grid>
+                    <Grid item >
+                    <Typography variant="subtitle2">
+                    <b>UPLOAD PICTURE</b>
+                    </Typography>
+                    </Grid>
                 </Grid>
 
-                <Grid item xs={12}>
-                  <input
-                    accept="image/*"
-                    className={classes.input}
-                    id="contained-button-file"
-                    multiple
-                    type="file"
-                  />
-                  <label htmlFor="contained-button-file">
-                    <Button
-                      variant="contained"
-                      color="default"
-                      component="span"
-                      startIcon={<CloudUploadIcon />}
-                    >
-                      Upload Picture
-                    </Button>
-                  </label>
+                <Grid container direction="row" alignItems="center" item xs={12} spacing={2} >
+                <Grid item>
+                <input multiple type="file" onChange={docSelectedHandler}/>
+                </Grid>
+                <Grid item>
+                <DescriptionIcon />
+                </Grid>
+                <Typography variant="subtitle2" color="palette.text.disabled">
+                <b>UPLOAD DOCUMENT</b>
+                </Typography>
                 </Grid>
 
-                <Grid item xs={12}>
-                  <input
-                    className={classes.input}
-                    id="contained-button-file"
-                    multiple
-                    type="file"
-                  />
-                  <label htmlFor="contained-button-file">
-                    <Button
-                      variant="contained"
-                      color="default"
-                      component="span"
-                      startIcon={<CloudUploadIcon />}
-                    >
-                      Upload Document
-                    </Button>
-                  </label>
-                </Grid>
-
-                <Grid item xs={12} sm={6}>
+                {/* <Grid item xs={12} sm={6}>
                   <Button
                     type="submit"
                     variant="contained"
@@ -815,9 +788,9 @@ console.log(services)
                   >
                     Save
                   </Button>
-                </Grid>
+                </Grid> */}
 
-                <Grid item xs={12} sm={6}>
+                <Grid item xs={12} alignItems="center">
                   <Button
                     type="submit"
                     variant="contained"
