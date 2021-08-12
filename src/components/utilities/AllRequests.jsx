@@ -81,7 +81,7 @@ export const AllRequests = () => {
     .then(resp=>resp.json())
     .then(resp=>setRequests(resp))
 
-    
+   
    },[])
 
 
@@ -92,32 +92,32 @@ export const AllRequests = () => {
 
 
 
-  const rows =[
-    {
-   "Number":"REQ0456",
-   "Name":"Jack",
-   "State": "ACTIVE",
-   "ShortDescription":"Tap not working",
-   "AssignedTo":"Facilities Team",
-   "DateCreated":"05-06-2021"
+//   const rows =[
+//     {
+//    "Number":"REQ0456",
+//    "Name":"Jack",
+//    "State": "ACTIVE",
+//    "ShortDescription":"Tap not working",
+//    "AssignedTo":"Facilities Team",
+//    "DateCreated":"05-06-2021"
 
     
-    },
-    {
-      "Number":"REQ0486",
-      "Name":"Lilly",
-      "State": "ACTIVE",  
-      "ShortDescription":"fan not working",
-      "AssignedTo":"Facilities Team",
-      "DateCreated":"08-06-2021"
-       }
+//     },
+//     {
+//       "Number":"REQ0486",
+//       "Name":"Lilly",
+//       "State": "ACTIVE",  
+//       "ShortDescription":"fan not working",
+//       "AssignedTo":"Facilities Team",
+//       "DateCreated":"08-06-2021"
+//        }
 
-];
-
-
+// ];
 
 
 
+
+console.log(requests)
 
 
   return (
@@ -179,7 +179,7 @@ export const AllRequests = () => {
           </Button>
         </Grid>
       </Grid>
-        <TableLayout rows={rows}/> 
+        <TableLayout rows={requests}/> 
      
       
     </div>

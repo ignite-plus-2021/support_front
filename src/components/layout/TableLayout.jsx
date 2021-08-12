@@ -61,7 +61,7 @@ export const TableLayout = ({rows }) => {
           <StyledTableCell align="right">State</StyledTableCell>
           <StyledTableCell align="right">Short Description</StyledTableCell>
           <StyledTableCell align="right">Assigned to</StyledTableCell>
-          <StyledTableCell align="right">Date Created</StyledTableCell>
+          {/* <StyledTableCell align="right">Date Created</StyledTableCell> */}
         </TableRow>
       </TableHead>
 
@@ -72,12 +72,12 @@ export const TableLayout = ({rows }) => {
           rows.map((row) => (
           <StyledTableRow key={row.name}>
         
-            <StyledTableCell align="right">{row.Number}</StyledTableCell>
-             <StyledTableCell align="right">{row.Name}</StyledTableCell> 
-             <StyledTableCell align="right">{row.State}</StyledTableCell> 
-              <StyledTableCell align="right">{row.ShortDescription}</StyledTableCell>
-             <StyledTableCell align="right">{row.AssignedTo}</StyledTableCell>
-             <StyledTableCell align="right">{row.DateCreated}</StyledTableCell>  
+            <StyledTableCell align="right">{row.requestId}</StyledTableCell>
+             <StyledTableCell align="right">{row.user.userName}</StyledTableCell> 
+             <StyledTableCell align="right">{row.state}</StyledTableCell> 
+              <StyledTableCell align="right">{row.description}</StyledTableCell>
+             <StyledTableCell align="right">{row.service.supportTeam}</StyledTableCell>
+             {/* <StyledTableCell align="right">{row.DateCreated}</StyledTableCell>   */}
             
           </StyledTableRow>
         ))

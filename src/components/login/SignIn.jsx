@@ -83,13 +83,20 @@ export default function SignIn() {
       .put("http://localhost:8080/login", jsonBody)
 
       .then((response) => {
+        console.log(response.data)
+        localStorage.setItem('userName', response.data.userName)
         if (response.status === 200) {
           alert("Logged in sucessfully");
         }
       })
       .catch((error) => {
-        console.log("Invalid Email or Password");
+        console.log("Invalid UserName or Password");
       });
+
+      
+
+
+
   };
 
   return (

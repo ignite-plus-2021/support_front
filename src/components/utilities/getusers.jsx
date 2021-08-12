@@ -86,55 +86,55 @@ export const GetUsers = () => {
 
 
 
-  const fetchServices = () => {
+  // const fetchServices = () => {
    
-    axios
-      .get("http://localhost:8080/services")
-       .then((response) => {
-          setServices(response.data);
+  //   axios
+  //     .get("http://localhost:8080/services")
+  //      .then((response) => {
+  //         setServices(response.data);
 
-           console.log(response);
+  //          console.log(response);
 
-        if (response.status === 200) {
-          alert("Values fetched sucessfully");
-        }
-      })
-      .catch((error) => {
-        console.log(error.message);
-      });
-
-         
-  };
-
-
-  // useEffect(() => {
-  //    fetch('http://localhost:8080/services',
-  //    {
-  //      method:'Get',
-  //      headers:{
-  //        'Content-Type':'application/json',
-  //      }
-  //    })
-  //    .then(resp=>resp.json())
-  //    .then(resp=>setServices(resp))
-
-     
-  //   },[])
-
-
-
-
-  //   useEffect(() => {
-  //     fetch('http://localhost:8080/locations',
-  //     {
-  //       method:'Get',
-  //       headers:{
-  //         'Content-Type':'application/json',
+  //       if (response.status === 200) {
+  //         alert("Values fetched sucessfully");
   //       }
   //     })
-  //     .then(resp=>resp.json())
-  //     .then(resp=>setLocations(resp))
-  //    },[])
+  //     .catch((error) => {
+  //       console.log(error.message);
+  //     });
+
+         
+  // };
+
+
+  useEffect(() => {
+     fetch('http://localhost:8080/services',
+     {
+       method:'Get',
+       headers:{
+         'Content-Type':'application/json',
+       }
+     })
+     .then(resp=>resp.json())
+     .then(resp=>setServices(resp))
+
+     
+    },[])
+
+
+
+
+    useEffect(() => {
+      fetch('http://localhost:8080/locations',
+      {
+        method:'Get',
+        headers:{
+          'Content-Type':'application/json',
+        }
+      })
+      .then(resp=>resp.json())
+      .then(resp=>setLocations(resp))
+     },[])
      
 
 
