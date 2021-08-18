@@ -4,14 +4,13 @@ import Button from "@material-ui/core/Button";
 import Grid from "@material-ui/core/Grid";
 import { makeStyles } from "@material-ui/core/styles";
 import AddAPhotoIcon from "@material-ui/icons/AddAPhoto";
-import AirplayIcon from "@material-ui/icons/Airplay";;
-
+import AirplayIcon from "@material-ui/icons/Airplay";
 
 const UseStyles = makeStyles((theme) => ({
   button: {
     margin: theme.spacing(3),
     marginTop: theme.spacing(30),
-    marginLeft: theme.spacing(10),
+    marginLeft: theme.spacing(20),
     borderRadius: theme.shape.borderRadius,
     boxShadow: " 7px 7px grey",
     width: "230px",

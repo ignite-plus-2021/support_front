@@ -21,18 +21,17 @@ import SignUp from "../login/SignUp";
 import HomePage from "../utilities/HomePage";
 import SignIn from "../login/SignIn";
 import MyRequests from "../utilities/MyRequests";
-import {AllRequests } from "../utilities/AllRequests";
+import { AllRequests } from "../utilities/AllRequests";
 import RequestForm from "../utilities/RequestForm";
-import PersonIcon from '@material-ui/icons/Person';
+import PersonIcon from "@material-ui/icons/Person";
 import ForgotPassword from "../utilities/ForgotPassword";
 import ResetPassword from "../utilities/ResetPassword";
 import VerifyOTP from "../utilities/verifyotp";
-import GetUsers from "../utilities/getusers";
-import LibraryAddIcon from '@material-ui/icons/LibraryAdd';
-import ListAltIcon from '@material-ui/icons/ListAlt';
-import LibraryBooksIcon from '@material-ui/icons/LibraryBooks';
-import DashboardIcon from '@material-ui/icons/Dashboard';
+import Trends from "../utilities/Trends";
 
+import LibraryAddIcon from "@material-ui/icons/LibraryAdd";
+import LibraryBooksIcon from "@material-ui/icons/LibraryBooks";
+import DashboardIcon from "@material-ui/icons/Dashboard";
 
 const drawerWidth = 240;
 
@@ -212,21 +211,40 @@ export const Layout = () => {
             )}
           </IconButton>
         </div>
+
         <Divider />
-        <List >
+        <List>
           {/* ICONS AT THE NAV BAR */}
           <ListItemLink primary="Home" to="/" icon={<HomeIcon />} open={open} />
-          <ListItemLink primary="New Request" to="/requestform" icon={ <LibraryAddIcon/>} open={open}  />
+          <ListItemLink
+            primary="New Request"
+            to="/requestform"
+            icon={<LibraryAddIcon />}
+            open={open}
+          />
           {/* <ListItemLink primary="" to="" icon={<ListAltIcon/>} open={open} /> */}
-          <ListItemLink primary="My requests" to="/myrequests" icon={<LibraryBooksIcon/>} open={open}  />
-          <ListItemLink primary="DashBoard" to="/allrequests" icon={<DashboardIcon/>} open={open}  />
-          <ListItemLink primary="Register" to="/register" icon={<PersonIcon />} open={open} />
-
-
-
+          <ListItemLink
+            primary="My requests"
+            to="/myrequests"
+            icon={<LibraryBooksIcon />}
+            open={open}
+          />
+          <ListItemLink
+            primary="DashBoard"
+            to="/allrequests"
+            icon={<DashboardIcon />}
+            open={open}
+          />
+          <ListItemLink
+            primary="Register"
+            to="/register"
+            icon={<PersonIcon />}
+            open={open}
+          />
         </List>
         <Divider />
       </Drawer>
+
       <main className={classes.content}>
         <div className={classes.appBarSpacer} />
         <Switch>
@@ -251,7 +269,6 @@ export const Layout = () => {
             path="/requestform"
             component={RequestForm}
           />
-
           <Route
             key="/forgotpassword"
             exact
@@ -264,24 +281,14 @@ export const Layout = () => {
             path="/resetpassword"
             component={ResetPassword}
           />
-
           <Route
             key="/verifyOTP"
             exact
             path="/verifyOTP"
             component={VerifyOTP}
-          />  
-
-
-
-          <Route
-            key="/getUsers"
-            exact
-            path="/users"
-            component={GetUsers}
-          />  
-
-
+          />
+          <Route key="/trends" exact path="/trends" component={Trends} />
+          {/* admindashboard/trends */}
         </Switch>
       </main>
     </div>

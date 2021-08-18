@@ -1,101 +1,71 @@
-import React ,{ useState ,useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import Button from "@material-ui/core/Button";
 import { makeStyles } from "@material-ui/core/styles";
 import { useHistory as UseHistory } from "react-router-dom";
- import {TableLayout} from "../layout/TableLayout";
+import { TableLayout } from "../layout/TableLayout";
 import Grid from "@material-ui/core/Grid";
-import axios from "axios";
-
 
 const UseStyles = makeStyles((theme) => ({
   button: {
     margin: theme.spacing(3),
     marginTop: theme.spacing(10),
-    marginLeft: theme.spacing(75),
+    marginLeft: theme.spacing(95),
     borderRadius: theme.shape.borderRadius,
     boxShadow: " 7px 7px grey",
-    width: "230px",
-    height: "140px",
+    width: "300px",
+    height: "150px",
   },
 }));
-
-
 
 export const MyRequests = () => {
   const classes = UseStyles();
   let history = UseHistory();
 
-
-
-
-  // const [requests, setrequests] = useState("");
-  // const fetchAllRequests = () => {
-   
-  //   axios
-  //     .get("http://localhost:8080/myrequests")
-  //      .then((response) => {
-        
-  //       setrequests(response.data);
-  //       ///Print all the requests  to console
-  //       console.log(response);
-
-
-  //       if (response.status === 200) {
-  //         alert("Values fetched sucessfully");
-  //       }
-  //     })
-  //     .catch((error) => {
-  //       console.log(error.message);
-  //     });
-
-        
-         
-  // };
-
-
   const [requests, setRequests] = useState([]);
-
   useEffect(() => {
-    fetch('http://localhost:8080/myrequests',
-    {
-      method:'Get',
-      headers:{
-        'Content-Type':'application/json',
-      }
-    })
-    .then(resp=>resp.json())
-    .then(resp=>setRequests(resp))
-
-    
-   },[])
-
-
-   function createData(Number, Name, State,AssignedTo,ShortDescription, DateCreated) {
-    return { Number, Name, State,AssignedTo, ShortDescription, DateCreated };
-  }
-
-   const rows =[
-      {
-     "Number":"REQ0456",
-     "Name":"Jack",
-     "State": "ACTIVE",
-     "ShortDescription":"Tap not working",
-     "AssignedTo":"Facilities Team",
-     "DateCreated":"05-06-2021"
-
-      
+    fetch("http://localhost:8080/requests/myrequests", {
+      method: "Get",
+      headers: {
+        "Content-Type": "application/json",
       },
-      {
-        "Number":"REQ0486",
-        "Name":"Jack",
-        "State": "ACTIVE",  
-        "ShortDescription":"fan not working",
-        "AssignedTo":"Facilities Team",
-        "DateCreated":"08-06-2021"
-         }
-  
+    })
+      .then((resp) => resp.json())
+      .then((resp) => setRequests(resp));
+  }, []);
+
+  //Temporary data
+  const rows = [
+    {
+      requestId: "REQ0456",
+      user: { userName: "Jack" },
+      state: "ACTIVE",
+      description: "Tap not working",
+      location: " GWS First Floor",
+      impactedService: "Rest Room",
+      service: { supportTeam: "Facilities Team" },
+      DateCreated: "05-06-2021",
+    },
+    {
+      requestId: "REQ0556",
+      user: { userName: "Jack" },
+      state: "ACTIVE",
+      description: "Tap not working",
+      location: "GWS First Floor",
+      impactedService: "Rest Room",
+      service: { supportTeam: "Facilities Team" },
+      DateCreated: "10-08-2021",
+    },
+    {
+      requestId: "REQ9956",
+      user: { userName: "Jack" },
+      state: "ACTIVE",
+      description: "Fan not working",
+      location: " GWS First Floor",
+      impactedService: "Rest Room",
+      service: { supportTeam: "Facilities Team" },
+      DateCreated: "11-08-2021",
+    },
   ];
-   
 
   return (
     <div className={classes.root}>
@@ -110,17 +80,15 @@ export const MyRequests = () => {
               history.push("#");
             }}
           >
-            My Requests
+            <h3> My Requests</h3>
           </Button>
         </Grid>
-
         <Grid item xs={12}>
-          <TableLayout rows={rows} />
-        </Grid> 
+          <TableLayout rows={rows} /> {/*send requests as props*/}
+        </Grid>
       </Grid>
     </div>
   );
 };
-
 
 export default MyRequests;

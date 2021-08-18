@@ -11,9 +11,6 @@ import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import axios from "axios";
 
-
-
-
 const useStyles = makeStyles((theme) => ({
   paper: {
     marginTop: theme.spacing(20),
@@ -54,11 +51,8 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export const VerifyOTP = () => {
- 
   const [OTP, setOTP] = useState("");
   const [errorMsg, setErrorMsg] = useState(false);
-
-
 
   const classes = useStyles();
   let history = UseHistory();
@@ -66,13 +60,12 @@ export const VerifyOTP = () => {
   //Method to call endpoint and register
   const VerifyOTP = () => {
     const jsonBody = {
-     
-   OTP:OTP,
-   
+      OTP: OTP,
+
       /*confirm email id*/
     };
     axios
-      .post("http://localhost:8080/verifyotp", jsonBody)
+      .post("http://localhost:8080/users/verifyotp", jsonBody)
 
       .then((response) => {
         if (response.status === 200) {
@@ -93,80 +86,66 @@ export const VerifyOTP = () => {
             <LockOutlinedIcon />
           </Avatar>
           <Typography component="h1" variant="h5">
-          Verify OTP
+            Verify OTP
           </Typography>
           <form className={classes.form} noValidate>
             <Grid container spacing={3}>
-             {/* <Grid item xs={12} sm={6}> */}
-               
-                 <Grid item xs={12}>
-                  <TextField
-                    autoComplete="name"
-                    error={errorMsg}
-                    name="OTP"
-                    variant="outlined"
-                    required
-                    fullWidth
-                    id="OTP"
-                    label="Enter OTP"
-                   // maxLength={5}
-                    autoFocus
-                    helperText={errorMsg ? "Enter a 5 digit Otp" : ""}
-                    onChange={(event) => {
-                      setOTP(event.target.value);
-                      if(event.target.value.length!=5 )
-                      {
-                        setErrorMsg(true);
-                      }else {
-                        setErrorMsg(false);
-                      }
-                     
-                    }}
-                    value={OTP}
-                  />
-                </Grid>
+              {/* <Grid item xs={12} sm={6}> */}
 
+              <Grid item xs={12}>
+                <TextField
+                  autoComplete="name"
+                  error={errorMsg}
+                  name="OTP"
+                  variant="outlined"
+                  required
+                  fullWidth
+                  id="OTP"
+                  label="Enter OTP"
+                  // maxLength={5}
+                  autoFocus
+                  helperText={errorMsg ? "Enter a 5 digit Otp" : ""}
+                  onChange={(event) => {
+                    setOTP(event.target.value);
+                    if (event.target.value.length != 5) {
+                      setErrorMsg(true);
+                    } else {
+                      setErrorMsg(false);
+                    }
+                  }}
+                  value={OTP}
+                />
+              </Grid>
 
-             <Grid item xs={12} sm={6}>
-             <Button
-              fullWidth
-              variant="contained"
-              color="primary"
-              className={classes.submit}
-              onClick={() => {
-                // history.push("/");
-              }}
-            >
-             Resend OTP
-            </Button>
-           </Grid>
+              <Grid item xs={12} sm={6}>
+                <Button
+                  fullWidth
+                  variant="contained"
+                  color="primary"
+                  className={classes.submit}
+                  onClick={() => {
+                    // history.push("/");
+                  }}
+                >
+                  Resend OTP
+                </Button>
+              </Grid>
 
-
-         <Grid item xs={12} sm={6}>
-             <Button
-              fullWidth
-              variant="contained"
-              color="primary"
-              className={classes.submit}
-              onClick={() => {
-                history.push("/resetpassword");
-              }}
-              disabled={
-               
-                OTP==="" ||
-                OTP.length!=5
-               
-              }
-            >
-            Verify OTP
-            </Button>
-
-           </Grid>
-              
-            
-             
-           </Grid>
-           
+              <Grid item xs={12} sm={6}>
+                <Button
+                  fullWidth
+                  variant="contained"
+                  color="primary"
+                  className={classes.submit}
+                  onClick={() => {
+                    history.push("/resetpassword");
+                  }}
+                  disabled={OTP === "" || OTP.length != 5}
+                >
+                  Verify OTP
+                </Button>
+              </Grid>
+            </Grid>
           </form>
         </div>
       </Container>

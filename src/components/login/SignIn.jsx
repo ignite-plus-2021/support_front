@@ -3,7 +3,6 @@ import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import TextField from "@material-ui/core/TextField";
-// import Link from "@material-ui/core/Link";
 import Grid from "@material-ui/core/Grid";
 import Box from "@material-ui/core/Box";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
@@ -11,7 +10,7 @@ import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import axios from "axios";
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 
 function Copyright() {
   return (
@@ -80,23 +79,19 @@ export default function SignIn() {
     };
 
     axios
-      .put("http://localhost:8080/login", jsonBody)
+      .put("http://localhost:8080/users/login", jsonBody)
 
       .then((response) => {
-        console.log(response.data)
-        localStorage.setItem('userName', response.data.userName)
+        console.log(response.data);
         if (response.status === 200) {
-          alert("Logged in sucessfully");
+          localStorage.setItem("userName", response.data.userName);
+          localStorage.setItem("userId", response.data.id);
+          alert("User Logged in sucessfully");
         }
       })
       .catch((error) => {
         console.log("Invalid UserName or Password");
       });
-
-      
-
-
-
   };
 
   return (
@@ -179,7 +174,6 @@ export default function SignIn() {
               </Grid>
             </form>
           </div>
-
           <Box mt={5}>
             <Copyright />
           </Box>

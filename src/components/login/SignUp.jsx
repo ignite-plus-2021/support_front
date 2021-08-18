@@ -3,7 +3,6 @@ import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import TextField from "@material-ui/core/TextField";
-// import Link from "@material-ui/core/Link";
 import Grid from "@material-ui/core/Grid";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
@@ -15,8 +14,7 @@ import FormLabel from "@material-ui/core/FormLabel";
 import Radio from "@material-ui/core/Radio";
 import RadioGroup from "@material-ui/core/RadioGroup";
 import axios from "axios";
-import {Link} from "react-router-dom";
-
+import { Link } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -26,7 +24,7 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: "column",
     alignItems: "center",
     width: theme.spacing(70),
-    height: theme.spacing(95),
+    height: theme.spacing(105),
     padding: theme.spacing(3),
     borderRadius: theme.shape.borderRadius,
     boxShadow: "1px 1px 4px 4px #115293",
@@ -81,7 +79,7 @@ export const SignUp = () => {
       role: designation,
     };
     axios
-      .post("http://localhost:8080/register", jsonBody)
+      .post("http://localhost:8080/users/register", jsonBody)
 
       .then((response) => {
         if (response.status === 200) {
@@ -118,7 +116,6 @@ export const SignUp = () => {
                   autoFocus
                   onChange={(event) => {
                     setFirstName(event.target.value);
-                    // console.log(firstName);
                   }}
                   value={firstName}
                 />
@@ -276,10 +273,6 @@ export const SignUp = () => {
             >
               Sign Up
             </Button>
-            {/* 
-            <Button variant="contained" color="primary">
-              Primary
-            </Button> */}
 
             <Grid container justifyContent="flex-end">
               <Grid item>

@@ -9,7 +9,6 @@ import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
-
 import axios from "axios";
 
 const useStyles = makeStyles((theme) => ({
@@ -52,24 +51,21 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export const ForgotPassword = () => {
- 
-  const [emailAddress, setEmailAddress] = useState("");
- 
   const classes = useStyles();
   let history = UseHistory();
 
-  
+  const [emailAddress, setEmailAddress] = useState("");
+
   const ForgotPassword = () => {
     const jsonBody = {
-      
       emailId: emailAddress,
-     
     };
     axios
-      .post("http://localhost:8080/forgotpassword", jsonBody)
-
+      .post("http://localhost:8080/requests/forgotpassword", jsonBody)
       .then((response) => {
+        console.log(response.data);
         if (response.status === 200) {
+          //  localStorage.setItem("EmailId", response.data.EmailId);
           alert("Sucessfully sent OTP");
         }
       })
@@ -78,9 +74,6 @@ export const ForgotPassword = () => {
       });
   };
 
-
-
-  
   return (
     <div className={classes.root}>
       <Container component="main" maxWidth="xs">
@@ -90,14 +83,10 @@ export const ForgotPassword = () => {
             <LockOutlinedIcon />
           </Avatar>
           <Typography component="h1" variant="h5">
-           ForgotPassword
+            ForgotPassword
           </Typography>
           <form className={classes.form} noValidate>
             <Grid container spacing={3}>
-             
-             
-         {/* <Grid item xs={12} sm={6}> */}
-              
               <Grid item xs={12}>
                 <TextField
                   variant="outlined"
@@ -114,39 +103,22 @@ export const ForgotPassword = () => {
                 />
               </Grid>
 
-             
-
-          
-               {/* </Grid> */}
-
-            <Button
-              fullWidth
-              variant="contained"
-              color="primary"
-              className={classes.submit}
-              onClick={() => {
-                history.push("/verifyotp");
-              }}
-
-
-              
-              disabled={
-              
-                emailAddress === "" 
-              
-              }
-            >
-             Send OTP
-            </Button>
-            {/* 
-            <Button variant="contained" color="primary">
-              Primary
-            </Button> */}
-
-           </Grid>
-         
+              <Button
+                fullWidth
+                variant="contained"
+                color="primary"
+                className={classes.submit}
+                // onClick={() => {
+                //   history.push("/verifyotp");
+                // }}
+                onClick={ForgotPassword}
+                disabled={emailAddress === ""}
+              >
+                Send OTP
+              </Button>
+            </Grid>
           </form>
-          </div>
+        </div>
       </Container>
     </div>
   );

@@ -9,7 +9,6 @@ import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
-
 import axios from "axios";
 
 const useStyles = makeStyles((theme) => ({
@@ -52,24 +51,22 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export const ResetPassword = () => {
- 
+  const classes = useStyles();
+  let history = UseHistory();
+
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [errorMsg, setErrorMsg] = useState(false);
 
-
-
-  const classes = useStyles();
-  let history = UseHistory();
-  //Method to call endpoint and register
+  //onsubmit event
   const ResetPassword = () => {
     const jsonBody = {
-     
       password: password,
-      /*confirm email id*/
+      confirmPassword: confirmPassword,
+      /*confirm email id*/ //local storage
     };
     axios
-      .post("http://localhost:8080/ResetPassword", jsonBody)
+      .post("http://localhost:8080/users/resetpassword", jsonBody)
 
       .then((response) => {
         if (response.status === 200) {
@@ -90,13 +87,10 @@ export const ResetPassword = () => {
             <LockOutlinedIcon />
           </Avatar>
           <Typography component="h1" variant="h5">
-           Reset Password
+            Reset Password
           </Typography>
           <form className={classes.form} noValidate>
             <Grid container spacing={3}>
-             {/* <Grid item xs={12} sm={6}> */}
-               
-              
               <Grid item xs={12}>
                 <TextField
                   variant="outlined"
@@ -139,12 +133,6 @@ export const ResetPassword = () => {
                   value={confirmPassword}
                 />
               </Grid>
-
-           
-              
-               
-                   
-              {/* </Grid> */}
             </Grid>
 
             <Button
@@ -155,23 +143,14 @@ export const ResetPassword = () => {
               onClick={() => {
                 history.push("/login");
               }}
-              
               disabled={
-               
                 password === "" ||
                 confirmPassword === "" ||
                 password !== confirmPassword
-               
               }
             >
               Reset Password
             </Button>
-            {/* 
-            <Button variant="contained" color="primary">
-              Primary
-            </Button> */}
-
-           
           </form>
         </div>
       </Container>

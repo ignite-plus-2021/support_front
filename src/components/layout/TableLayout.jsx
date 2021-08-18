@@ -5,9 +5,6 @@ import TableBody from "@material-ui/core/TableBody";
 import TableCell from "@material-ui/core/TableCell";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
-import TableContainer from '@material-ui/core/TableContainer';
-import Paper from '@material-ui/core/Paper';
-
 
 const StyledTableCell = withStyles((theme) => ({
   head: {
@@ -27,70 +24,106 @@ const StyledTableRow = withStyles((theme) => ({
   },
 }))(TableRow);
 
-function createData(Number, Name, State,AssignedTo,ShortDescription, DateCreated) {
-  return { Number, Name, State,AssignedTo, ShortDescription, DateCreated };
+function createData(
+  Number,
+  Name,
+  State,
+  AssignedTo,
+  Location,
+  ImpactedService,
+  ShortDescription,
+  DateCreated
+) {
+  return {
+    Number,
+    Name,
+    State,
+    AssignedTo,
+    Location,
+    ImpactedService,
+    ShortDescription,
+    DateCreated,
+  };
 }
-
-
-
-
-
 
 const useStyles = makeStyles({
   table: {
-    width: "900px",
+    width: "1500px",
+    height: "300px",
     marginTop: "75px",
-    marginLeft: "270px",
+    marginLeft: "160px",
   },
 });
 
-export const TableLayout = ({rows }) => {
+export const TableLayout = ({ rows }) => {
   const classes = useStyles();
-
   return (
-
-
-    <TableContainer component={Paper}>
     <Table className={classes.table} aria-label="customized table">
       <TableHead>
         <TableRow align="center">
           <StyledTableCell align="right">
-            <span className={classes.headings}>Number</span>
+            <span className={classes.headings}>
+              <h2>Number</h2>
+            </span>
           </StyledTableCell>
-          <StyledTableCell align="right">Name</StyledTableCell>
-          <StyledTableCell align="right">State</StyledTableCell>
-          <StyledTableCell align="right">Short Description</StyledTableCell>
-          <StyledTableCell align="right">Assigned to</StyledTableCell>
-          {/* <StyledTableCell align="right">Date Created</StyledTableCell> */}
+          <StyledTableCell align="right">
+            <h2>Name</h2>
+          </StyledTableCell>
+          <StyledTableCell align="right">
+            <h2>State</h2>
+          </StyledTableCell>
+          <StyledTableCell align="right">
+            <h2>Assigned to</h2>
+          </StyledTableCell>
+          <StyledTableCell align="right">
+            <h2>Location</h2>
+          </StyledTableCell>
+          <StyledTableCell align="right">
+            <h2>Impacted Service</h2>
+          </StyledTableCell>
+          <StyledTableCell align="right">
+            <h2>Short Description</h2>
+          </StyledTableCell>
+          <StyledTableCell align="right">
+            <h2>Date Created</h2>
+          </StyledTableCell>
+          <StyledTableCell></StyledTableCell>
         </TableRow>
       </TableHead>
 
-
-
-        <TableBody>
-        {
-          rows.map((row) => (
+      <TableBody>
+        {rows.map((row) => (
           <StyledTableRow key={row.name}>
-        
-            <StyledTableCell align="right">{row.requestId}</StyledTableCell>
-             <StyledTableCell align="right">{row.user.userName}</StyledTableCell> 
-             <StyledTableCell align="right">{row.state}</StyledTableCell> 
-              <StyledTableCell align="right">{row.description}</StyledTableCell>
-             <StyledTableCell align="right">{row.service.supportTeam}</StyledTableCell>
-             {/* <StyledTableCell align="right">{row.DateCreated}</StyledTableCell>   */}
-            
+            <StyledTableCell align="right">
+              <h3>{row.requestId}</h3>
+            </StyledTableCell>
+            <StyledTableCell align="right">
+              <h3>{row.user.userName}</h3>
+            </StyledTableCell>
+            <StyledTableCell align="right">
+              <h3>{row.state}</h3>
+            </StyledTableCell>
+
+            <StyledTableCell align="right">
+              <h3>{row.service.supportTeam}</h3>
+            </StyledTableCell>
+            <StyledTableCell align="right">
+              <h3>{row.location}</h3>
+            </StyledTableCell>
+            <StyledTableCell align="right">
+              <h3>{row.impactedService}</h3>
+            </StyledTableCell>
+            <StyledTableCell align="right">
+              <h3>{row.description}</h3>
+            </StyledTableCell>
+            <StyledTableCell align="right">
+              <h3>{row.DateCreated}</h3>
+            </StyledTableCell>
+            <StyledTableCell></StyledTableCell>
           </StyledTableRow>
-        ))
-   }
-      </TableBody>  
-
-
-
+        ))}
+      </TableBody>
     </Table>
-    </TableContainer>
-
-
-
   );
 };
 
