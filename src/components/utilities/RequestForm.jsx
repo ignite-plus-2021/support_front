@@ -134,7 +134,7 @@ export default function RequestForm() {
 
   // console.log(requestid);
 
-  //upload photos
+  //upload photos;
   let fd = new FormData();
   const photoSelectedHandler = (event) => {
     fd.append("file", event.target.files[0], event.target.files[0].name);
@@ -311,7 +311,7 @@ export default function RequestForm() {
                   />
                 </Grid>
 
-                <Grid item xs={12}>
+                {/* <Grid item xs={12}>
                   <input
                     accept="image/*"
                     multiple
@@ -320,13 +320,21 @@ export default function RequestForm() {
                   />
                   <AddAPhotoIcon />
                   <span>Upload Picture</span>
-                </Grid>
+                </Grid> */}
 
-                <Grid item xs={12}>
+                <div>
+                  <Button variant="contained" component="label" mt={10}>
+                    Upload
+                    <input type="file" multiple hidden />
+                    <AddAPhotoIcon />
+                  </Button>
+                </div>
+
+                {/* <Grid item xs={12}>
                   <input multiple type="file" onChange={docSelectedHandler} />
                   <DescriptionIcon />
                   <span>Upload Document</span>
-                </Grid>
+                </Grid> */}
 
                 <div>
                   <Grid item xs={12}>
