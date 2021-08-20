@@ -51,7 +51,7 @@ const useStyles = makeStyles({
     width: "1500px",
     height: "300px",
     marginTop: "75px",
-    marginLeft: "160px",
+    marginLeft: "120px",
   },
 });
 

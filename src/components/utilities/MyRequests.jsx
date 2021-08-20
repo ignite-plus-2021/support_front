@@ -4,12 +4,13 @@ import { makeStyles } from "@material-ui/core/styles";
 import { useHistory as UseHistory } from "react-router-dom";
 import { TableLayout } from "../layout/TableLayout";
 import Grid from "@material-ui/core/Grid";
+import StickyHeadTable from "../layout/newtable2";
 
 const UseStyles = makeStyles((theme) => ({
   button: {
     margin: theme.spacing(3),
     marginTop: theme.spacing(10),
-    marginLeft: theme.spacing(95),
+    marginLeft: theme.spacing(85),
     borderRadius: theme.shape.borderRadius,
     boxShadow: " 7px 7px grey",
     width: "300px",
@@ -84,7 +85,9 @@ export const MyRequests = () => {
           </Button>
         </Grid>
         <Grid item xs={12}>
-          <TableLayout rows={rows} /> {/*send requests as props*/}
+          {/* <TableLayout rows={rows} /> */}
+          {/* //send requests as props */}
+          <StickyHeadTable />
         </Grid>
       </Grid>
     </div>

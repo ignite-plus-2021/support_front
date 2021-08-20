@@ -28,7 +28,8 @@ import ForgotPassword from "../utilities/ForgotPassword";
 import ResetPassword from "../utilities/ResetPassword";
 import VerifyOTP from "../utilities/verifyotp";
 import Trends from "../utilities/Trends";
-
+import StickyHeadTable from "../layout/newtable2";
+import PermanentDrawerLeft from "../layout/newlayout";
 import LibraryAddIcon from "@material-ui/icons/LibraryAdd";
 import LibraryBooksIcon from "@material-ui/icons/LibraryBooks";
 import DashboardIcon from "@material-ui/icons/Dashboard";
@@ -281,12 +282,39 @@ export const Layout = () => {
             path="/resetpassword"
             component={ResetPassword}
           />
+          {/* <Route
+            key="/tables"
+            exact
+            path="/tables"
+            component={CollapsibleTable}
+          /> */}
+          <Route
+            key="/tables2"
+            exact
+            path="/tables2"
+            component={StickyHeadTable}
+          />
+          {/* <Route
+            key="/tables"
+            exact
+            path="/tables"
+            component={CollapsibleTable}
+          /> */}
+
           <Route
             key="/verifyOTP"
             exact
             path="/verifyOTP"
             component={VerifyOTP}
           />
+
+          <Route
+            key="/newlayout"
+            exact
+            path="/newlayout"
+            component={PermanentDrawerLeft}
+          />
+
           <Route key="/trends" exact path="/trends" component={Trends} />
           {/* admindashboard/trends */}
         </Switch>

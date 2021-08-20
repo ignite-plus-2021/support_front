@@ -9,7 +9,7 @@ const UseStyles = makeStyles((theme) => ({
   button: {
     margin: theme.spacing(3),
     marginTop: theme.spacing(10),
-    marginLeft: theme.spacing(95),
+    marginLeft: theme.spacing(85),
     borderRadius: theme.shape.borderRadius,
     boxShadow: " 7px 7px grey",
     width: "300px",
