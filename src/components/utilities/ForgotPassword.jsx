@@ -22,10 +22,11 @@ const useStyles = makeStyles((theme) => ({
     height: theme.spacing(55),
     padding: theme.spacing(3),
     borderRadius: theme.shape.borderRadius,
-    boxShadow: "1px 1px 4px 4px #115293",
+    boxShadow: "1px 1px 7px 7px #115293",
   },
   avatar: {
     margin: theme.spacing(1),
+    padding: theme.spacing(5),
     backgroundColor: theme.palette.primary.main,
   },
   form: {
@@ -52,7 +53,6 @@ const useStyles = makeStyles((theme) => ({
 
 export const ForgotPassword = () => {
   const classes = useStyles();
-  let history = UseHistory();
 
   const [emailAddress, setEmailAddress] = useState("");
 
@@ -80,10 +80,10 @@ export const ForgotPassword = () => {
         <CssBaseline />
         <div className={classes.paper}>
           <Avatar className={classes.avatar}>
-            <LockOutlinedIcon />
+            <LockOutlinedIcon style={{ fontSize: "40px" }} />
           </Avatar>
           <Typography component="h1" variant="h5">
-            ForgotPassword
+            Forgot Password
           </Typography>
           <form className={classes.form} noValidate>
             <Grid container spacing={3}>

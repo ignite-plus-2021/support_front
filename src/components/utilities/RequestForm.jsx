@@ -8,17 +8,16 @@ import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import MenuItem from "@material-ui/core/MenuItem";
 import axios from "axios";
-import AddAPhotoIcon from "@material-ui/icons/AddAPhoto";
-import DescriptionIcon from "@material-ui/icons/Description";
+import CloudUploadIcon from "@material-ui/icons/CloudUpload";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
-    marginTop: theme.spacing(2),
+    marginTop: theme.spacing(15),
     backgroundColor: theme.palette.background.paper,
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
-    width: theme.spacing(70),
+    width: theme.spacing(80),
     height: theme.spacing(78),
     padding: theme.spacing(3),
     borderRadius: theme.shape.borderRadius,
@@ -32,6 +31,8 @@ const useStyles = makeStyles((theme) => ({
 
   submit: {
     margin: theme.spacing(3, 0, 2),
+    marginLeft: theme.spacing(15),
+    marginTop: theme.spacing(5),
   },
 
   root: {
@@ -58,6 +59,14 @@ const useStyles = makeStyles((theme) => ({
     padding: "2%",
     alignItems: "center",
   },
+
+  button: {
+    margin: theme.spacing(3),
+    marginTop: theme.spacing(5),
+    marginLeft: theme.spacing(3),
+    borderRadius: theme.shape.borderRadius,
+    boxShadow: " 2px 1px grey",
+  },
 }));
 
 export default function RequestForm() {
@@ -67,27 +76,17 @@ export default function RequestForm() {
   const [name, setname] = useState(
     localStorage.getItem("userName") ? localStorage.getItem("userName") : ""
   );
-  //const [id, setId] = useState(localStorage.getItem('user')?localStorage.getItem('user.id'):'');
-
-  // console.log(id)
 
   const [description, setdescription] = useState("");
   const [requeststate, setrequeststate] = useState("Active");
 
   const [impacted_service, setimpacted_service] = React.useState("");
-  const [request_location, setrequest_location] = React.useState("");
-
   const [locations, setLocations] = useState([]);
+
+  const [request_location, setrequest_location] = React.useState("");
   const [services, setServices] = useState([]);
 
-  //   useEffect(() => {
-  //     //
-  //     const user=localStorage.getItem('user')
-  //     console.log(user.userName)
-
-  // },[]);
-
-  // console.log(user.userName)
+  const [images, setImages] = useState([]);
 
   //Fetch services from sercies db
   useEffect(() => {
@@ -135,24 +134,24 @@ export default function RequestForm() {
   // console.log(requestid);
 
   //upload photos;
-  let fd = new FormData();
-  const photoSelectedHandler = (event) => {
-    fd.append("file", event.target.files[0], event.target.files[0].name);
-  };
+  // let fd = new FormData();
+  // const photoSelectedHandler = (event) => {
+  //   fd.append("file", event.target.files[0], event.target.files[0].name);
+  // };
 
-  //upload documents
-  let cd = new FormData();
-  const docSelectedHandler = (event) => {
-    cd.append("file", event.target.files[0], event.target.files[0].name);
-  };
+  // //upload documents
+  // let cd = new FormData();
+  // const docSelectedHandler = (event) => {
+  // cd.append("file", event.target.files[0], event.target.files[0].name);
+  // };
 
   //Headers for axios
-  let axiosConfig = {
-    headers: {
-      "Content-Type": "application/json;charset=UTF-8",
-      // "Access-Control-Allow-Origin": "*",
-    },
-  };
+  // let axiosConfig = {
+  //   headers: {
+  //     "Content-Type": "application/json;charset=UTF-8",
+  //     // "Access-Control-Allow-Origin": "*",
+  //   },
+  // };
 
   // headers: {
   //   'content-type': 'multipart/form-data'
@@ -161,31 +160,39 @@ export default function RequestForm() {
   //On requestform Submit
   const NewRequest = (event) => {
     event.preventDefault();
-    const postData = {
-      // requestId: requestid,
-      // state: requeststate,
-      state: "state",
-      description: description,
-      userId: id,
-      locationId: request_location,
-      serviceId: impacted_service,
-      photo: fd,
-      document: cd,
-    };
-    console.log(postData);
-
-    axios
-      .post("http://localhost:8080/request/newrequest", postData, axiosConfig)
-      .then((response) => {
-        if (response.status === 200) {
-          console.log(response.data);
-          alert("New Request Generated");
-        }
-      })
-      .catch((error) => {
-        console.log(error.message);
-      });
   };
+  // const postData = {
+  //   // requestId: requestid,
+  //   // state: requeststate,
+  //   state: "state",
+  //   description: description,
+  //   userId: id,
+  //   locationId: request_location,
+  //   serviceId: impacted_service,
+  //   photo: fd,
+  //   document: cd,
+  // };
+  // console.log(postData);
+
+  //   const formData = new Formdata();
+  //   formData.append(requestId, requestid);
+  //   formData.append(state, requeststate);
+  //   formData.append(description, description);
+  //   formData.append(locationId, request_location);
+  //   formData.append(serviceId, impacted_service);
+
+  //   axios
+  //     .post("http://localhost:8080/request/newrequest", formData)
+  //     .then((response) => {
+  //       if (response.status === 200) {
+  //         console.log(response.data);
+  //         alert("New Request Generated");
+  //       }
+  //     })
+  //     .catch((error) => {
+  //       console.log(error.message);
+  //     });
+  // };
 
   return (
     <div className={classes.root}>
@@ -198,34 +205,6 @@ export default function RequestForm() {
             </Typography>
             <form className={classes.form} noValidate>
               <Grid container spacing={3}>
-                {/* <Grid item xs={12} sm={6}>
-                  <TextField
-                    variant="outlined"
-                    required
-                    fullWidth
-                    id="request_id"
-                    label="Request Id"
-                    value={requestid}
-                    InputProps={{
-                      readOnly: true,
-                    }}
-                  />
-                </Grid> */}
-
-                {/* <Grid item xs={12} sm={6}>
-                  <TextField
-                    variant="outlined"
-                    required
-                    fullWidth
-                    id="request_state"
-                    label="Request State"
-                    defaultValue={requeststate}
-                    InputProps={{
-                      readOnly: true,
-                    }}
-                  />
-                </Grid> */}
-
                 <Grid item xs={12} sm={6}>
                   <TextField
                     variant="outlined"
@@ -234,6 +213,20 @@ export default function RequestForm() {
                     id="name"
                     label="Requester Name"
                     value={name}
+                    InputProps={{
+                      readOnly: true,
+                    }}
+                  />
+                </Grid>
+
+                <Grid item xs={12} sm={6}>
+                  <TextField
+                    variant="outlined"
+                    required
+                    fullWidth
+                    id="request_state"
+                    label="Request State"
+                    defaultValue={requeststate}
                     InputProps={{
                       readOnly: true,
                     }}
@@ -311,30 +304,44 @@ export default function RequestForm() {
                   />
                 </Grid>
 
-                {/* <Grid item xs={12}>
+                <div>
                   <input
                     accept="image/*"
+                    className={classes.input}
+                    style={{ display: "none" }}
+                    id="raised-button-file"
                     multiple
                     type="file"
-                    onChange={photoSelectedHandler}
+                    onChange={(event) => {
+                      setImages((prevState) => [
+                        ...prevState,
+                        event.target.value,
+                      ]);
+                    }}
                   />
-                  <AddAPhotoIcon />
-                  <span>Upload Picture</span>
-                </Grid> */}
-
-                <div>
-                  <Button variant="contained" component="label" mt={10}>
-                    Upload
-                    <input type="file" multiple hidden />
-                    <AddAPhotoIcon />
-                  </Button>
+                  <label htmlFor="raised-button-file">
+                    <Button
+                      variant="contained"
+                      component="span"
+                      className={classes.button}
+                      padding="15px"
+                    >
+                      <span>Upload</span>
+                      <CloudUploadIcon />
+                    </Button>
+                    {images.map(
+                      (image) => (
+                        (image = image.replace(/^.*\\/, "")),
+                        (
+                          <ul style={{ fontSize: "14px", color: "green" }}>
+                            {image}
+                          </ul>
+                        )
+                        // <Typography >{image}</Typography>
+                      )
+                    )}
+                  </label>
                 </div>
-
-                {/* <Grid item xs={12}>
-                  <input multiple type="file" onChange={docSelectedHandler} />
-                  <DescriptionIcon />
-                  <span>Upload Document</span>
-                </Grid> */}
 
                 <div>
                   <Grid item xs={12}>

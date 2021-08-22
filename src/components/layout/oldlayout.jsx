@@ -5,6 +5,7 @@ import { CssBaseline, AppBar } from "@material-ui/core";
 import Toolbar from "@material-ui/core/Toolbar";
 import IconButton from "@material-ui/core/IconButton";
 import HomeIcon from "@material-ui/icons/Home";
+import MenuIcon from "@material-ui/icons/Menu";
 import Typography from "@material-ui/core/Typography";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import ChevronRightIcon from "@material-ui/icons/ChevronRight";
@@ -17,6 +18,7 @@ import List from "@material-ui/core/List";
 import { Link, Route, Switch } from "react-router-dom";
 import Tooltip from "@material-ui/core/Tooltip";
 import SignUp from "../login/SignUp";
+import HomePage from "../utilities/HomePage";
 import SignIn from "../login/SignIn";
 import MyRequests from "../utilities/MyRequests";
 import { AllRequests } from "../utilities/AllRequests";
@@ -138,7 +140,7 @@ export const ListItemLink = ({ icon, primary, secondary, to, open }) => (
   </Tooltip>
 );
 
-export const Layout = () => {
+export const xxx = () => {
   const classes = useStyles();
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
@@ -169,11 +171,13 @@ export const Layout = () => {
             className={clsx(classes.menuButton, {
               [classes.hide]: open,
             })}
-          ></IconButton>
+          >
+            <MenuIcon />
+          </IconButton>
 
           <Typography variant="h6">
             <Link to="/" className={classes.titleLink}>
-              SUPPORT HUB
+              Support HUB
             </Link>
           </Typography>
 
@@ -245,7 +249,7 @@ export const Layout = () => {
       <main className={classes.content}>
         <div className={classes.appBarSpacer} />
         <Switch>
-          {/* <Route key="/" exact path="/" component={HomePage} /> */}
+          {<Route key="/" exact path="/" component={HomePage} />}
           <Route key="/register" exact path="/register" component={SignUp} />
           <Route key="/login" exact path="/login" component={SignIn} />
           <Route
@@ -278,24 +282,13 @@ export const Layout = () => {
             path="/resetpassword"
             component={ResetPassword}
           />
-          {/* <Route
-            key="/tables"
-            exact
-            path="/tables"
-            component={CollapsibleTable}
-          /> */}
+
           <Route
             key="/tables2"
             exact
             path="/tables2"
             component={StickyHeadTable}
           />
-          {/* <Route
-            key="/tables"
-            exact
-            path="/tables"
-            component={CollapsibleTable}
-          /> */}
 
           <Route
             key="/verifyOTP"
@@ -319,4 +312,4 @@ export const Layout = () => {
   );
 };
 
-export default Layout;
+export default xxx;

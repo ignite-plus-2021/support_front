@@ -18,16 +18,17 @@ import { Link } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
-    marginTop: theme.spacing(2),
+    marginTop: theme.spacing(10),
+
     backgroundColor: theme.palette.background.paper,
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
-    width: theme.spacing(70),
+    width: theme.spacing(80),
     height: theme.spacing(105),
     padding: theme.spacing(3),
     borderRadius: theme.shape.borderRadius,
-    boxShadow: "1px 1px 4px 4px #115293",
+    boxShadow: "1px 1px 7px 7px #115293",
   },
   avatar: {
     margin: theme.spacing(1),
@@ -276,8 +277,14 @@ export const SignUp = () => {
 
             <Grid container justifyContent="flex-end">
               <Grid item>
-                <Link to="/login" variant="body2">
-                  Already have an account? Sign in
+                <Link
+                  to="/login"
+                  variant="body2"
+                  style={{ textDecoration: "none" }}
+                >
+                  <p style={{ fontSize: "18px" }}>
+                    Already have an account? Sign in
+                  </p>
                 </Link>
               </Grid>
             </Grid>

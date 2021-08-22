@@ -32,8 +32,8 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
-    width: theme.spacing(55),
-    height: theme.spacing(60),
+    width: theme.spacing(75),
+    height: theme.spacing(70),
     padding: theme.spacing(2),
     borderRadius: theme.shape.borderRadius,
     boxShadow: "1px 1px 7px 7px #115293",
@@ -41,6 +41,7 @@ const useStyles = makeStyles((theme) => ({
   avatar: {
     margin: theme.spacing(1),
     backgroundColor: theme.palette.primary.main,
+    padding: theme.spacing(5),
   },
   form: {
     width: "100%",
@@ -102,7 +103,7 @@ export default function SignIn() {
 
           <div className={classes.paper}>
             <Avatar className={classes.avatar}>
-              <LockOutlinedIcon />
+              <LockOutlinedIcon style={{ fontSize: "40px" }} />
             </Avatar>
 
             <Typography component="h1" variant="h5">
@@ -161,14 +162,24 @@ export default function SignIn() {
                 className={classes.endContent}
               >
                 <Grid item>
-                  <Link to="/forgotpassword" variant="body2">
-                    Forgot Password
+                  <Link
+                    to="/forgotpassword"
+                    variant="body2"
+                    style={{ textDecoration: "none" }}
+                  >
+                    <p style={{ fontSize: "17px" }}> Forgot Password</p>
                   </Link>
                 </Grid>
 
                 <Grid item>
-                  <Link to="/register" variant="body2">
-                    Don't have an account? Sign Up
+                  <Link
+                    to="/register"
+                    variant="body2"
+                    style={{ textDecoration: "none" }}
+                  >
+                    <p style={{ fontSize: "17px" }}>
+                      Don't have an account? Sign Up{" "}
+                    </p>
                   </Link>
                 </Grid>
               </Grid>

@@ -22,10 +22,11 @@ const useStyles = makeStyles((theme) => ({
     height: theme.spacing(70),
     padding: theme.spacing(3),
     borderRadius: theme.shape.borderRadius,
-    boxShadow: "1px 1px 4px 4px #115293",
+    boxShadow: "1px 1px 7px 7px #115293",
   },
   avatar: {
     margin: theme.spacing(1),
+    padding: theme.spacing(5),
     backgroundColor: theme.palette.primary.main,
   },
   form: {
@@ -83,7 +84,7 @@ export const VerifyOTP = () => {
         <CssBaseline />
         <div className={classes.paper}>
           <Avatar className={classes.avatar}>
-            <LockOutlinedIcon />
+            <LockOutlinedIcon style={{ fontSize: "40px" }} />
           </Avatar>
           <Typography component="h1" variant="h5">
             Verify OTP
@@ -107,7 +108,7 @@ export const VerifyOTP = () => {
                   helperText={errorMsg ? "Enter a 5 digit Otp" : ""}
                   onChange={(event) => {
                     setOTP(event.target.value);
-                    if (event.target.value.length != 5) {
+                    if (event.target.value.length !== 5) {
                       setErrorMsg(true);
                     } else {
                       setErrorMsg(false);
@@ -140,7 +141,7 @@ export const VerifyOTP = () => {
                   onClick={() => {
                     history.push("/resetpassword");
                   }}
-                  disabled={OTP === "" || OTP.length != 5}
+                  disabled={OTP === "" || OTP.length !== 5}
                 >
                   Verify OTP
                 </Button>

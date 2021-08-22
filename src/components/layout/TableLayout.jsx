@@ -24,27 +24,27 @@ const StyledTableRow = withStyles((theme) => ({
   },
 }))(TableRow);
 
-function createData(
-  Number,
-  Name,
-  State,
-  AssignedTo,
-  Location,
-  ImpactedService,
-  ShortDescription,
-  DateCreated
-) {
-  return {
-    Number,
-    Name,
-    State,
-    AssignedTo,
-    Location,
-    ImpactedService,
-    ShortDescription,
-    DateCreated,
-  };
-}
+// function createData(
+//   Number,
+//   Name,
+//   State,
+//   AssignedTo,
+//   Location,
+//   ImpactedService,
+//   ShortDescription,
+//   DateCreated
+// ) {
+//   return {
+//     Number,
+//     Name,
+//     State,
+//     AssignedTo,
+//     Location,
+//     ImpactedService,
+//     ShortDescription,
+//     DateCreated,
+//   };
+// }
 
 const useStyles = makeStyles({
   table: {
