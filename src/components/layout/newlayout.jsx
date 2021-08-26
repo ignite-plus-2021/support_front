@@ -26,7 +26,7 @@ import SignIn from "../login/SignIn";
 import MyRequests from "../utilities/MyRequests";
 import { AllRequests } from "../utilities/AllRequests";
 import RequestForm from "../utilities/RequestForm";
-
+import DataUsageIcon from "@material-ui/icons/DataUsage";
 import CloseRequest from "../utilities/closeRequest";
 import DataTable from "../layout/DataTable";
 
@@ -50,7 +50,7 @@ const useStyles = makeStyles((theme) => ({
   // necessary for content to be below app bar
   toolbar: theme.mixins.toolbar,
   content: {
-    flexGrow: 1,
+    // flexGrow: 1,
     backgroundColor: theme.palette.background.default,
     padding: theme.spacing(3),
   },
@@ -71,13 +71,13 @@ export default function Permanent() {
   return (
     <div className={classes.root}>
       <CssBaseline />
-      {/* <AppBar position="fixed" className={classes.appBar}>
+      <AppBar className={classes.appBar}>
         <Toolbar>
-          <Typography variant="h6" noWrap>
+          <Typography variant="h5" noWrap>
             SUPPORT HUB
           </Typography>
         </Toolbar>
-      </AppBar> */}
+      </AppBar>
       <Drawer
         className={classes.drawer}
         variant="permanent"
@@ -104,13 +104,18 @@ export default function Permanent() {
           />
           <ListItemLink
             primary="DashBoard"
-            to="/allrequests"
+            to="allrequests"
             icon={<DashboardIcon />}
           />
-          <ListItemLink
+          {/* <ListItemLink
             primary="Register"
             to="/register"
             icon={<PersonIcon />}
+          /> */}
+          <ListItemLink
+            primary="Trends"
+            to="/trends"
+            icon={<DataUsageIcon />}
           />
         </List>
       </Drawer>

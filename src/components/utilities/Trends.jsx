@@ -14,6 +14,7 @@ import { withStyles } from "@material-ui/core/styles";
 import { Stack, Animation } from "@devexpress/dx-react-chart";
 import { bardata } from "../layout/trendsdata";
 import { piedata as data } from "../layout/piedata";
+import Typography from "@material-ui/core/Typography";
 
 const legendStyles = () => ({
   root: {
@@ -44,6 +45,7 @@ const styles = (theme) => ({
   },
   paper: {
     marginTop: theme.spacing(10),
+    maxWidth: 1500,
   },
 });
 class Demo extends React.PureComponent {
@@ -60,6 +62,9 @@ class Demo extends React.PureComponent {
     const { classes } = this.props;
     return (
       <div className={classes.root}>
+        <Typography variant="h3" noWrap>
+          TRENDS
+        </Typography>
         <Paper className={classes.paper}>
           <Grid container spacing={1} alignItems="center">
             <Grid item xl={6} lg={6} md={12} sm={12} xs={12}>

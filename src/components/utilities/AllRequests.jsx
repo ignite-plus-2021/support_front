@@ -1,19 +1,18 @@
 import React, { useState, useEffect } from "react";
-import Button from "@material-ui/core/Button";
+
 import { makeStyles } from "@material-ui/core/styles";
 import { useHistory as UseHistory } from "react-router-dom";
-import Grid from "@material-ui/core/Grid";
-import StickyHeadTable from "../layout/newtable2";
+
+import DataTable from "../layout/DataTable";
+import Typography from "@material-ui/core/Typography";
 
 const UseStyles = makeStyles((theme) => ({
-  button: {
-    margin: theme.spacing(3),
-    marginTop: theme.spacing(10),
-    marginLeft: theme.spacing(5),
-    borderRadius: theme.shape.borderRadius,
-    boxShadow: " 7px 7px grey",
-    width: "300px",
-    height: "130px",
+  container: {
+    marginTop: 70,
+    maxHeight: 900,
+    maxWidth: 1800,
+    marginLeft: 35,
+    marginRight: 55,
   },
 
   root: {
@@ -74,26 +73,16 @@ export const AllRequests = () => {
 
   return (
     <div className={classes.root}>
-      <Grid container>
-        <Grid item xs={12}>
-          <Button
-            variant="contained"
-            color="primary"
-            size="large"
-            className={classes.button}
-            onClick={() => {
-              history.push("#");
-            }}
-          >
-            <h3>Trends</h3>
-          </Button>
-        </Grid>
-      </Grid>
+      <div className={classes.container}>
+        <Typography variant="h4" noWrap>
+          ALL REQUESTS
+        </Typography>
+      </div>
       {/* when u dont have backend  up and running use dummy data  */}
-      <StickyHeadTable rows={rows} />
+
+      <DataTable />
 
       {/* else use this data from backend */}
-      {/* <StickyHeadTable rows={requests} /> */}
     </div>
   );
 };

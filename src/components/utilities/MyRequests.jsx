@@ -4,18 +4,9 @@ import { makeStyles } from "@material-ui/core/styles";
 import { useHistory as UseHistory } from "react-router-dom";
 import Grid from "@material-ui/core/Grid";
 import StickyHeadTable from "../layout/newtable2";
+import Typography from "@material-ui/core/Typography";
 
-const UseStyles = makeStyles((theme) => ({
-  button: {
-    margin: theme.spacing(3),
-    marginTop: theme.spacing(10),
-    marginLeft: theme.spacing(5),
-    borderRadius: theme.shape.borderRadius,
-    boxShadow: " 7px 7px grey",
-    width: "300px",
-    height: "130px",
-  },
-}));
+const UseStyles = makeStyles((theme) => ({}));
 
 export const MyRequests = () => {
   const classes = UseStyles();
@@ -69,28 +60,17 @@ export const MyRequests = () => {
 
   return (
     <div className={classes.root}>
-      <Grid container spacing={3}>
-        <Grid item xs={12}>
-          <Button
-            variant="contained"
-            color="primary"
-            size="large"
-            className={classes.button}
-            onClick={() => {
-              history.push("#");
-            }}
-          >
-            <h3> My Requests</h3>
-          </Button>
-        </Grid>
-        <Grid item xs={12}>
-          {/* when u dont have backend  up and running use dummy data  */}
-          <StickyHeadTable rows={rows} />
+      <div className={classes.container}>
+        <Typography variant="h4" noWrap>
+          MY REQUESTS
+        </Typography>
+      </div>
 
-          {/* else use this data from backend */}
-          {/* <StickyHeadTable rows={requests} /> */}
-        </Grid>
-      </Grid>
+      {/* when u dont have backend  up and running use dummy data  */}
+      <StickyHeadTable rows={rows} />
+
+      {/* else use this data from backend */}
+      {/* <StickyHeadTable rows={requests} /> */}
     </div>
   );
 };

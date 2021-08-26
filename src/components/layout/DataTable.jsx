@@ -68,7 +68,7 @@ const useStyles = makeStyles((theme) => ({
   container: {
     marginTop: 30,
     maxHeight: 900,
-    maxWidth: 1400,
+    maxWidth: 1800,
     marginLeft: 25,
     marginRight: 55,
     borderWidth: 3,
@@ -96,10 +96,9 @@ const useStyles = makeStyles((theme) => ({
     height: "30px",
   },
 
-  // checkbox: {
-  //   marginLeft: 1360,
-  //   hidden: true,
-  // },
+  Table: {
+    marginTop: theme.spacing(35),
+  },
 }));
 
 export default function DataTable() {
@@ -139,17 +138,17 @@ export default function DataTable() {
   };
 
   return (
-    <>
+    <div className={classes.Table}>
       <TableContainer className={classes.container}>
-        <Checkbox
+        {/* <Checkbox
           className="checkbox"
           checked={filter}
           onChange={handleChange}
           inputProps={{ "aria-label": "primary checkbox" }}
         />
-        <label>Filters</label>
+        <label>Filters</label> */}
 
-        <div className={classes.checkbox}>
+        {/* <div className={classes.checkbox}>
           <Button
             fullWidth
             variant="contained"
@@ -157,9 +156,9 @@ export default function DataTable() {
             className={classes.button}
             onClick={closeRequest}
           ></Button>
-        </div>
+        </div> */}
         <MaterialTable
-          title="ALL REQUESTS"
+          title="REQUESTS"
           columns={[
             { title: "Number", field: "Number", filtering: false },
             { title: "Name", field: "Name", filtering: false },
@@ -181,7 +180,7 @@ export default function DataTable() {
           }}
           actions={[
             {
-              icon: "delete",
+              icon: "",
               tooltip: "Close All selected Requests",
               onClick: () => {
                 console.log(selectedrows);
@@ -194,6 +193,6 @@ export default function DataTable() {
           ]}
         />
       </TableContainer>
-    </>
+    </div>
   );
 }
