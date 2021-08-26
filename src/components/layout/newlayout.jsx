@@ -22,12 +22,13 @@ import ResetPassword from "../utilities/ResetPassword";
 import VerifyOTP from "../utilities/verifyotp";
 import Trends from "../utilities/Trends";
 import SignUp from "../login/SignUp";
-import HomePage from "../utilities/HomePage";
 import SignIn from "../login/SignIn";
 import MyRequests from "../utilities/MyRequests";
 import { AllRequests } from "../utilities/AllRequests";
 import RequestForm from "../utilities/RequestForm";
-import DataTable from "../layout/Table3";
+
+import CloseRequest from "../utilities/closeRequest";
+import DataTable from "../layout/DataTable";
 
 const drawerWidth = 220;
 
@@ -70,13 +71,13 @@ export default function Permanent() {
   return (
     <div className={classes.root}>
       <CssBaseline />
-      <AppBar position="fixed" className={classes.appBar}>
+      {/* <AppBar position="fixed" className={classes.appBar}>
         <Toolbar>
           <Typography variant="h6" noWrap>
             SUPPORT HUB
           </Typography>
         </Toolbar>
-      </AppBar>
+      </AppBar> */}
       <Drawer
         className={classes.drawer}
         variant="permanent"
@@ -149,6 +150,20 @@ export default function Permanent() {
             exact
             path="/resetpassword"
             component={ResetPassword}
+          />
+
+          <Route
+            key="/closerequest"
+            exact
+            path="/closerequest"
+            component={CloseRequest}
+          />
+
+          <Route
+            key="/datatable"
+            exact
+            path="/datatable"
+            component={DataTable}
           />
 
           <Route

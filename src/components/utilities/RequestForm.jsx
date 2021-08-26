@@ -9,6 +9,8 @@ import Container from "@material-ui/core/Container";
 import MenuItem from "@material-ui/core/MenuItem";
 import axios from "axios";
 import CloudUploadIcon from "@material-ui/icons/CloudUpload";
+import AddBoxIcon from "@material-ui/icons/AddBox";
+import Avatar from "@material-ui/core/Avatar";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -36,6 +38,7 @@ const useStyles = makeStyles((theme) => ({
   },
 
   root: {
+    marginLeft: theme.spacing(10),
     flexGrow: 1,
   },
 
@@ -58,6 +61,12 @@ const useStyles = makeStyles((theme) => ({
   mainContent: {
     padding: "2%",
     alignItems: "center",
+  },
+
+  avatar: {
+    margin: theme.spacing(1),
+    backgroundColor: theme.palette.primary.main,
+    padding: theme.spacing(5),
   },
 
   button: {
@@ -200,6 +209,10 @@ export default function RequestForm() {
         <Container component="main" maxWidth="xs">
           <CssBaseline />
           <div className={classes.paper}>
+            <Avatar className={classes.avatar}>
+              <AddBoxIcon />
+            </Avatar>
+
             <Typography component="h1" variant="h5">
               Request Form
             </Typography>
@@ -236,7 +249,7 @@ export default function RequestForm() {
                 <Grid item xs={12} sm={6}>
                   <TextField
                     value={impacted_service}
-                    id="impacted_service-label"
+                    id="impacted_service_label"
                     onChange={(event) => {
                       setimpacted_service(event.target.value);
                     }}
