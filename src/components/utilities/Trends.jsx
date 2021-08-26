@@ -1,90 +1,117 @@
-import React from "react";
-import Typography from "@material-ui/core/Typography";
-import { makeStyles } from "@material-ui/core/styles";
-import Container from "@material-ui/core/Container";
+import { Grid } from "@material-ui/core";
+import * as React from "react";
+import Paper from "@material-ui/core/Paper";
+import {
+  Chart,
+  ArgumentAxis,
+  ValueAxis,
+  BarSeries,
+  Title,
+  Legend,
+  PieSeries,
+} from "@devexpress/dx-react-chart-material-ui";
+import { withStyles } from "@material-ui/core/styles";
+import { Stack, Animation } from "@devexpress/dx-react-chart";
+import { bardata } from "../layout/trendsdata";
+import { piedata as data } from "../layout/piedata";
 
-const useStyles = makeStyles((theme) => ({
-  paper: {
-    marginTop: theme.spacing(2),
-    backgroundColor: theme.palette.background.paper,
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-    width: theme.spacing(70),
-    height: theme.spacing(78),
-    padding: theme.spacing(3),
-    borderRadius: theme.shape.borderRadius,
-    boxShadow: "1px 1px 4px 4px #115293",
-  },
-
-  form: {
-    width: "100%",
-    marginTop: theme.spacing(3),
-  },
-
-  submit: {
-    margin: theme.spacing(3, 0, 2),
-  },
-
+const legendStyles = () => ({
   root: {
-    flexGrow: 1,
+    display: "flex",
+    margin: "auto",
+    flexDirection: "row",
   },
-
-  menuButton: {
-    marginRight: theme.spacing(2),
+});
+const legendRootBase = ({ classes, ...restProps }) => (
+  <Legend.Root {...restProps} className={classes.root} />
+);
+const Root = withStyles(legendStyles, { name: "LegendRoot" })(legendRootBase);
+const legendLabelStyles = () => ({
+  label: {
+    whiteSpace: "nowrap",
   },
+});
+const legendLabelBase = ({ classes, ...restProps }) => (
+  <Legend.Label className={classes.label} {...restProps} />
+);
+const Label = withStyles(legendLabelStyles, { name: "LegendLabel" })(
+  legendLabelBase
+);
 
-  title: {
-    flexGrow: 1,
+const styles = (theme) => ({
+  root: {
+    marginTop: theme.spacing(10),
   },
-
-  formControl: {
-    width: 245,
+  paper: {
+    marginTop: theme.spacing(10),
   },
+});
+class Demo extends React.PureComponent {
+  constructor(props) {
+    super(props);
 
-  selectEmpty: {
-    marginTop: theme.spacing(2),
-  },
+    this.state = {
+      data,
+    };
+  }
 
-  mainContent: {
-    padding: "2%",
-    alignItems: "center",
-  },
-}));
+  render() {
+    const { data: chartData } = this.state;
+    const { classes } = this.props;
+    return (
+      <div className={classes.root}>
+        <Paper className={classes.paper}>
+          <Grid container spacing={1} alignItems="center">
+            <Grid item xl={6} lg={6} md={12} sm={12} xs={12}>
+              <Chart data={bardata}>
+                <ArgumentAxis />
+                <ValueAxis />
 
-export const Trends = () => {
-  const classes = useStyles();
-  //   let history = UseHistory();
+                <BarSeries
+                  name="Total Requests"
+                  valueField="totalrequests"
+                  argumentField="week"
+                  color="#0d47a1"
+                  dataSource={bardata}
+                />
+                <BarSeries
+                  name="Resolved Requests"
+                  valueField="resolved"
+                  argumentField="week"
+                  color="#90caf9"
+                />
+                <Animation />
+                <Legend
+                  position="bottom"
+                  rootComponent={Root}
+                  labelComponent={Label}
+                />
+                <Title text="Number of Requests" />
+                <Stack />
+              </Chart>
+            </Grid>
+            <Grid item xl={6} lg={6} md={12} sm={12} xs={12}>
+              <Chart data={chartData}>
+                <PieSeries
+                  valueField="val"
+                  argumentField="requests"
+                  innerRadius={0.8}
+                  color="#90caf9"
+                />
+                <Legend
+                  position="bottom"
+                  rootComponent={Root}
+                  labelComponent={Label}
+                />
+                <Title text="Active and Resolved Requests" />
+                <Animation />
+              </Chart>
+            </Grid>
+          </Grid>
+        </Paper>
+      </div>
+    );
+  }
+}
 
-  //   //Method to call endpoint trends
-  //   const Trends = () => {
-  //     const jsonBody = {
-  //
-  //     };
-  //     axios
-  //       .post("http://localhost:8080/trends", jsonBody)
-
-  //       .then((response) => {
-  //         if (response.status === 200) {
-  //           alert(".....");
-  //         }
-  //       })
-  //       .catch((error) => {
-  //         console.log(error.message);
-  //       });
-  //   };
-
-  return (
-    <div className={classes.root}>
-      <Container component="main" maxWidth="xs">
-        <div>
-          <Typography component="h1" variant="h5">
-            Trends
-          </Typography>
-        </div>
-      </Container>
-    </div>
-  );
-};
-
-export default Trends;
+export default withStyles(styles)(Demo);
