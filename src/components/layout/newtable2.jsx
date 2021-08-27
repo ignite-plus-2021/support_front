@@ -126,6 +126,11 @@ const useStyles = makeStyles((theme) => ({
   selectEmpty: {
     marginTop: theme.spacing(2),
   },
+
+  tableHeader: {
+    backgroundColor: "#01579b",
+    color: "white",
+  },
 }));
 
 export default function StickyHeadTable({ rows }) {
@@ -187,30 +192,30 @@ export default function StickyHeadTable({ rows }) {
         <Table stickyHeader aria-label="sticky table">
           <TableHead>
             <TableRow>
-              <TableCell>
+              <TableCell className={classes.tableHeader}>
                 {" "}
                 <h2>Request ID</h2>
               </TableCell>
-              <TableCell>
+              <TableCell className={classes.tableHeader}>
                 {" "}
                 <h2>Name</h2>
               </TableCell>
-              <TableCell>
+              <TableCell className={classes.tableHeader}>
                 <h2>Assigned To</h2>
               </TableCell>
-              <TableCell>
+              <TableCell className={classes.tableHeader}>
                 <h2>Location</h2>
               </TableCell>
-              <TableCell>
+              <TableCell className={classes.tableHeader}>
                 <h2>Impacted Service</h2>
               </TableCell>
-              <TableCell>
+              <TableCell className={classes.tableHeader}>
                 <h2>Short Description</h2>
               </TableCell>
-              <TableCell>
+              <TableCell className={classes.tableHeader}>
                 <h2>Date Created</h2>
               </TableCell>
-              <TableCell>
+              <TableCell className={classes.tableHeader}>
                 <h2>State</h2>
               </TableCell>
             </TableRow>
