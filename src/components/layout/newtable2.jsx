@@ -106,7 +106,7 @@ const useStyles = makeStyles((theme) => ({
   },
 
   container: {
-    marginTop: 30,
+    marginTop: 100,
     maxHeight: 500,
     maxWidth: 1600,
     marginLeft: 25,
@@ -118,7 +118,8 @@ const useStyles = makeStyles((theme) => ({
 
   formControl: {
     margin: theme.spacing(1),
-    marginTop: 10,
+    marginTop: 60,
+    marginBottom: 10,
     marginLeft: 1365,
     minWidth: 250,
   },
@@ -182,46 +183,8 @@ export default function StickyHeadTable({ rows }) {
         </Select>
       </FormControl>
 
-      {/* const columns = [
-  { id: "Number", label: "Request ID" },
-  { id: "Name", label: "Name" },
-  { id: "AssignedTo", label: "Assigned To" },
-  { id: "Location", label: "Location" },
-  { id: "ImpactedService", label: "Impacted Service" },
-  { id: "ShortDescription", label: "Short Description" },
-  { id: "DateCreated", label: "Date Created" },
-  { id: "State", label: "State" },
-]; */}
-
       <TableContainer className={classes.container}>
         <Table stickyHeader aria-label="sticky table">
-          {/* <TableHead>
-            <TableRow>
-              {columns.map((column) => (
-                <TableCell key={column.id}>
-                  <h2>{column.label}</h2>
-                </TableCell>
-              ))}
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {filteredData
-              .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-              .map((row) => {
-                return (
-                  <TableRow hover role="checkbox" tabIndex={-1} key={row.code}>
-                    {columns.map((column) => {
-                      const value = row[column.id];
-                      return (
-                        <TableCell key={column.id} style={myPaddingStyle}>
-                          <h3>{value}</h3>
-                        </TableCell>
-                      );
-                    })}
-                  </TableRow>
-                );
-              })}
-          </TableBody> */}
           <TableHead>
             <TableRow>
               <TableCell>

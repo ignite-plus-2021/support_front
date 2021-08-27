@@ -6,7 +6,15 @@ import Grid from "@material-ui/core/Grid";
 import StickyHeadTable from "../layout/newtable2";
 import Typography from "@material-ui/core/Typography";
 
-const UseStyles = makeStyles((theme) => ({}));
+const UseStyles = makeStyles((theme) => ({
+  container: {
+    marginTop: 70,
+    maxHeight: 900,
+    maxWidth: 2800,
+    marginLeft: 35,
+    marginRight: 55,
+  },
+}));
 
 export const MyRequests = () => {
   const classes = UseStyles();
@@ -26,6 +34,36 @@ export const MyRequests = () => {
 
   //Temporary data
   const rows = [
+    {
+      requestId: "REQ0456",
+      user: { userName: "Jack" },
+      State: "Completed",
+      description: "Tap not working",
+      location: " GWS First Floor",
+      impactedService: "Rest Room",
+      service: { supportTeam: "Facilities Team" },
+      DateCreated: "05-06-2021",
+    },
+    {
+      requestId: "REQ0456",
+      user: { userName: "Jack" },
+      State: "Completed",
+      description: "Tap not working",
+      location: " GWS First Floor",
+      impactedService: "Rest Room",
+      service: { supportTeam: "Facilities Team" },
+      DateCreated: "05-06-2021",
+    },
+    {
+      requestId: "REQ0456",
+      user: { userName: "Jack" },
+      State: "Completed",
+      description: "Tap not working",
+      location: " GWS First Floor",
+      impactedService: "Rest Room",
+      service: { supportTeam: "Facilities Team" },
+      DateCreated: "05-06-2021",
+    },
     {
       requestId: "REQ0456",
       user: { userName: "Jack" },

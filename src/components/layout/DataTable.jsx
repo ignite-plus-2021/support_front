@@ -201,7 +201,7 @@ export default function DataTable() {
             }}
             actions={[
               {
-                icon: "delete",
+                icon: "save",
                 tooltip: "Close All selected Requests",
                 onClick: () => {
                   console.log(selectedrows);
