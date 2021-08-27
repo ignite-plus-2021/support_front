@@ -44,7 +44,7 @@ const styles = (theme) => ({
     marginTop: theme.spacing(10),
   },
   paper: {
-    marginTop: theme.spacing(10),
+    marginTop: theme.spacing(20),
     maxWidth: 1500,
   },
 });
@@ -65,9 +65,9 @@ class Demo extends React.PureComponent {
         <Typography variant="h3" noWrap>
           TRENDS
         </Typography>
-        <Paper className={classes.paper}>
+        <Paper>
           <Grid container spacing={1} alignItems="center">
-            <Grid item xl={6} lg={6} md={12} sm={12} xs={12}>
+            <Grid item xl={8} lg={8} md={12} sm={12} xs={12}>
               <Chart data={bardata}>
                 <ArgumentAxis />
                 <ValueAxis />
@@ -95,7 +95,7 @@ class Demo extends React.PureComponent {
                 <Stack />
               </Chart>
             </Grid>
-            <Grid item xl={6} lg={6} md={12} sm={12} xs={12}>
+            <Grid item xl={4} lg={4} md={12} sm={12} xs={12}>
               <Chart data={chartData}>
                 <PieSeries
                   valueField="val"

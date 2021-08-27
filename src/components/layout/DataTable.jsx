@@ -1,11 +1,13 @@
 import React from "react";
 
 import { makeStyles } from "@material-ui/core/styles";
-import Button from "@material-ui/core/Button";
+
 import TableContainer from "@material-ui/core/TableContainer";
 import MaterialTable from "material-table";
-import Checkbox from "@material-ui/core/Checkbox";
+import { createTheme } from "@material-ui/core/styles";
 import axios from "axios";
+import MuiThemeProvider from "@material-ui/core/styles/MuiThemeProvider";
+import Checkbox from "@material-ui/core/Checkbox";
 
 const rows = [
   {
@@ -44,7 +46,7 @@ const rows = [
     AssignedTo: "Facilities Team",
     Location: "GWS Second Floor",
     ImpactedService: "MEET ROOM",
-    ShortDescription: "FAn NOT WORKING",
+    ShortDescription: "FAN NOT WORKING",
     DateCreated: "09-05-2021",
     State: "Completed",
   },
@@ -66,14 +68,10 @@ const useStyles = makeStyles((theme) => ({
   },
 
   container: {
-    marginTop: 30,
-    maxHeight: 900,
-    maxWidth: 1800,
-    marginLeft: 25,
-    marginRight: 55,
+    maxHeight: 1000,
+    maxWidth: 2800,
+
     borderWidth: 3,
-    borderColor: "black",
-    borderStyle: "groove",
   },
 
   formControl: {
@@ -94,10 +92,6 @@ const useStyles = makeStyles((theme) => ({
     boxShadow: " 3px 3px grey",
     width: "30px",
     height: "30px",
-  },
-
-  Table: {
-    marginTop: theme.spacing(35),
   },
 }));
 
@@ -137,17 +131,27 @@ export default function DataTable() {
     alert("requests closed sucessfully");
   };
 
+  const theme = createTheme({
+    palette: {
+      primary: {
+        main: "#115293",
+      },
+      secondary: {
+        main: "#115293",
+      },
+    },
+  });
+
   return (
     <div className={classes.Table}>
       <TableContainer className={classes.container}>
-        {/* <Checkbox
+        <Checkbox
           className="checkbox"
           checked={filter}
           onChange={handleChange}
           inputProps={{ "aria-label": "primary checkbox" }}
         />
-        <label>Filters</label> */}
-
+        <label>Filters</label>
         {/* <div className={classes.checkbox}>
           <Button
             fullWidth
@@ -155,43 +159,61 @@ export default function DataTable() {
             color="primary"
             className={classes.button}
             onClick={closeRequest}
-          ></Button>
-        </div> */}
-        <MaterialTable
-          title="REQUESTS"
-          columns={[
-            { title: "Number", field: "Number", filtering: false },
-            { title: "Name", field: "Name", filtering: false },
-            { title: "Assigned To", field: "AssignedTo" },
-            { title: "Location", field: "Location" },
-            { title: "Impacted Service", field: "ImpactedService" },
-            {
-              title: "Short Description",
-              field: "ShortDescription",
-            },
-            { title: "Date Created", field: "DateCreated", filtering: false },
-            { title: "State", field: "State" },
-          ]}
-          data={rows}
-          onSelectionChange={(rows) => setSelectedRows(rows)}
-          options={{
-            filtering: filter,
-            selection: true,
-          }}
-          actions={[
-            {
-              icon: "",
-              tooltip: "Close All selected Requests",
-              onClick: () => {
-                console.log(selectedrows);
-                alert("Succesfully closed all selected requests");
-                // {
-                //   closeRequest;
-                // }
+          ></Button> */}
+        {/* </div> */}
+        <MuiThemeProvider theme={theme}>
+          <MaterialTable
+            style={{ padding: "0 25px" }}
+            columns={[
+              {
+                title: "Number",
+                field: "Number",
+                filtering: false,
               },
-            },
-          ]}
-        />
+              { title: "Name", field: "Name", filtering: false },
+              { title: "Assigned To", field: "AssignedTo" },
+              { title: "Location", field: "Location" },
+              { title: "Impacted Service", field: "ImpactedService" },
+              {
+                title: "Short Description",
+                field: "ShortDescription",
+              },
+              { title: "Date Created", field: "DateCreated" },
+              { title: "State", field: "State" },
+            ]}
+            data={rows}
+            onSelectionChange={(rows) => setSelectedRows(rows)}
+            options={{
+              filtering: filter,
+              selection: true,
+              showTitle: false,
+              headerStyle: {
+                backgroundColor: "#01579b",
+                color: "#FFF",
+                fontFamily: "sans-serif",
+                fontSize: "20px",
+              },
+
+              rowStyle: {
+                backgroundColor: "#EEE",
+                fontSize: "20px",
+              },
+            }}
+            actions={[
+              {
+                icon: "delete",
+                tooltip: "Close All selected Requests",
+                onClick: () => {
+                  console.log(selectedrows);
+                  alert("Succesfully closed all selected requests");
+                  // {
+                  //   closeRequest;
+                  // }
+                },
+              },
+            ]}
+          />
+        </MuiThemeProvider>
       </TableContainer>
     </div>
   );

@@ -10,13 +10,21 @@ const UseStyles = makeStyles((theme) => ({
   container: {
     marginTop: 70,
     maxHeight: 900,
-    maxWidth: 1800,
+    maxWidth: 2800,
     marginLeft: 35,
     marginRight: 55,
   },
 
   root: {
     flexGrow: 1,
+  },
+
+  table: {
+    marginTop: 70,
+    maxHeight: 1000,
+    maxWidth: 2300,
+    marginLeft: 35,
+    marginRight: 55,
   },
 }));
 
@@ -72,18 +80,22 @@ export const AllRequests = () => {
   ];
 
   return (
-    <div className={classes.root}>
+    // <div className={classes.root}>
+    <>
       <div className={classes.container}>
         <Typography variant="h4" noWrap>
-          ALL REQUESTS
+          REQUESTS
         </Typography>
       </div>
-      {/* when u dont have backend  up and running use dummy data  */}
+      <div className={classes.table}>
+        {/* when u dont have backend  up and running use dummy data  */}
 
-      <DataTable />
+        <DataTable />
 
-      {/* else use this data from backend */}
-    </div>
+        {/* else use this data from backend */}
+      </div>
+      {/* </div> */}
+    </>
   );
 };
 
