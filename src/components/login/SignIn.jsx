@@ -1,52 +1,50 @@
-import React from 'react';
-import Avatar from '@material-ui/core/Avatar';
-import Button from '@material-ui/core/Button';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import TextField from '@material-ui/core/TextField';
-import Link from '@material-ui/core/Link';
-import Grid from '@material-ui/core/Grid';
-import Box from '@material-ui/core/Box';
-import AppBar from "@material-ui/core/AppBar";
-import Toolbar from "@material-ui/core/Toolbar";
-import IconButton from "@material-ui/core/IconButton";
-import MenuIcon from "@material-ui/icons/Menu";
-import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
-import Typography from '@material-ui/core/Typography';
-import { makeStyles } from '@material-ui/core/styles';
-import Container from '@material-ui/core/Container';
+import React, { useState } from "react";
+import Avatar from "@material-ui/core/Avatar";
+import Button from "@material-ui/core/Button";
+import CssBaseline from "@material-ui/core/CssBaseline";
+import TextField from "@material-ui/core/TextField";
+// import Link from "@material-ui/core/Link";
+import Grid from "@material-ui/core/Grid";
+import Box from "@material-ui/core/Box";
+import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
+import Typography from "@material-ui/core/Typography";
+import { makeStyles } from "@material-ui/core/styles";
+import Container from "@material-ui/core/Container";
+import axios from "axios";
+import {Link} from "react-router-dom";
 
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
-      {'Copyright © '}
+      {"Copyright © "}
       <Link color="inherit" href="https://material-ui.com/">
         Support Hub
-      </Link>{' '}
+      </Link>{" "}
       {new Date().getFullYear()}
-      {'.'}
+      {"."}
     </Typography>
   );
 }
 
 const useStyles = makeStyles((theme) => ({
   paper: {
-    marginTop: theme.spacing(3),
+    marginTop: theme.spacing(10),
     backgroundColor: theme.palette.background.paper,
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    width: theme.spacing(65),
-    height: theme.spacing(80),
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    width: theme.spacing(55),
+    height: theme.spacing(60),
     padding: theme.spacing(2),
     borderRadius: theme.shape.borderRadius,
-    boxShadow: '1px 1px 4px 4px #115293',
+    boxShadow: "1px 1px 7px 7px #115293",
   },
   avatar: {
     margin: theme.spacing(1),
-    backgroundColor: theme.palette.primary.main
+    backgroundColor: theme.palette.primary.main,
   },
   form: {
-    width: '100%', 
+    width: "100%",
     marginTop: theme.spacing(3),
   },
   submit: {
@@ -54,8 +52,6 @@ const useStyles = makeStyles((theme) => ({
   },
   root: {
     flexGrow: 1,
-    
-   
   },
   menuButton: {
     marginRight: theme.spacing(2),
@@ -64,121 +60,124 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 1,
   },
   mainContent: {
-    padding: "1%"
-  }  
+    padding: "1%",
+  },
+
+  endContent: {
+    marginTop: theme.spacing(5),
+  },
 }));
 
 export default function SignIn() {
+  const [userName, setUserName] = useState("");
+  const [password, setPassword] = useState("");
   const classes = useStyles();
 
+  const UserLogin = () => {
+    const jsonBody = {
+      userName: userName,
+      password: password,
+    };
+
+    axios
+      .put("http://localhost:8080/login", jsonBody)
+
+      .then((response) => {
+        if (response.status === 200) {
+          alert("Logged in sucessfully");
+        }
+      })
+      .catch((error) => {
+        console.log("Invalid Email or Password");
+      });
+  };
+
   return (
-    <div className={classes.root}  >
-      <AppBar position="static" >
-        <Toolbar>
-          <IconButton
-            edge="start"
-            className={classes.menuButton}
-            color="inherit"
-            aria-label="menu">
-            <MenuIcon />
-          </IconButton>
+    <div className={classes.root}>
+      <div className={classes.mainContent}>
+        <Container component="main" maxWidth="xs">
+          <CssBaseline />
 
-          <Typography variant="h6" className={classes.title}>
-            Support Hub
-          </Typography>
-          <Button color="inherit">Logout</Button>
-        </Toolbar>
-      </AppBar>
+          <div className={classes.paper}>
+            <Avatar className={classes.avatar}>
+              <LockOutlinedIcon />
+            </Avatar>
 
-       <div className={classes.mainContent}>
-    <Container component="main" maxWidth="xs">
-      <CssBaseline />
+            <Typography component="h1" variant="h5">
+              Sign In
+            </Typography>
 
+            <form className={classes.form} noValidate>
+              <Grid container spacing={3} align-items="center">
+                <Grid item xs={12}>
+                  <TextField
+                    autoComplete="name"
+                    name="firstName"
+                    variant="outlined"
+                    required
+                    fullWidth
+                    id="userName"
+                    label="User Name"
+                    autoFocus
+                    onChange={(event) => {
+                      setUserName(event.target.value);
+                    }}
+                    value={userName}
+                  />
+                </Grid>
 
-      <div className={classes.paper}>
+                <Grid item xs={12}>
+                  <TextField
+                    variant="outlined"
+                    required
+                    fullWidth
+                    label="Password"
+                    type="password"
+                    id="password"
+                    onChange={(event) => {
+                      setPassword(event.target.value);
+                    }}
+                    value={password}
+                  />
+                </Grid>
 
-        <Avatar className={classes.avatar}>
-          <LockOutlinedIcon />
-        </Avatar>
+                <Button
+                  fullWidth
+                  variant="contained"
+                  color="primary"
+                  className={classes.submit}
+                  onClick={UserLogin}
+                  disabled={userName === "" || password === ""}
+                >
+                  Sign In
+                </Button>
+              </Grid>
 
-        <Typography component="h1" variant="h5">
-          Sign In
-        </Typography>
+              <Grid
+                container
+                justifyContent="space-evenly"
+                className={classes.endContent}
+              >
+                <Grid item>
+                  <Link to="/forgotpassword" variant="body2">
+                    Forgot Password
+                  </Link>
+                </Grid>
 
-        <form className={classes.form} noValidate>
+                <Grid item>
+                  <Link to="/register" variant="body2">
+                    Don't have an account? Sign Up
+                  </Link>
+                </Grid>
+              </Grid>
+            </form>
+          </div>
 
-          <Grid container spacing={3}  align-items="center">
-
-            <Grid item xs={12}>
-              <TextField
-                variant="outlined"
-                required
-                fullWidth
-                id="userid"
-                label="User ID"
-                name="userid"
-                autoComplete="userid"
-              />
-            </Grid>
-
-
-            <Grid item xs={12}>
-              <TextField
-                variant="outlined"
-                required
-                fullWidth
-                name="password"
-                label="Password"
-                type="password"
-                id="password"
-                autoComplete="current-password"
-              />
-            </Grid>
-
-
-          </Grid>
-          <Button
-            type="submit"
-            fullWidth
-            variant="contained"
-            color="primary"
-            className={classes.submit}
-          >
-            Sign In
-          </Button>
-
-          
-          <Grid container justifyContent="space-evenly">
-            
-            <Grid item   >
-              <Link href="#" variant="body2">
-                Forgot Password
-              </Link>
-            </Grid>
-
-            <Grid item   >
-              <Link href="#" variant="body2">
-                Don't have an account? Sign Up
-              </Link>
-            </Grid>
-
-
-            </Grid>
-
-
-
-          
-
-
-          
-        </form>
+          <Box mt={5}>
+            <Copyright />
+          </Box>
+        </Container>
       </div>
-      
-      <Box mt={5}>
-        <Copyright />
-      </Box>
-    </Container>
     </div>
-  </div>
   );
 }
