@@ -245,7 +245,7 @@ export const Layout = () => {
       <main className={classes.content}>
         <div className={classes.appBarSpacer} />
         <Switch>
-          {/* <Route key="/" exact path="/" component={HomePage} /> */}
+         
           <Route key="/register" exact path="/register" component={SignUp} />
           <Route key="/login" exact path="/login" component={SignIn} />
           <Route
@@ -278,24 +278,14 @@ export const Layout = () => {
             path="/resetpassword"
             component={ResetPassword}
           />
-          {/* <Route
-            key="/tables"
-            exact
-            path="/tables"
-            component={CollapsibleTable}
-          /> */}
+       
           <Route
             key="/tables2"
             exact
             path="/tables2"
             component={StickyHeadTable}
           />
-          {/* <Route
-            key="/tables"
-            exact
-            path="/tables"
-            component={CollapsibleTable}
-          /> */}
+         
 
           <Route
             key="/verifyOTP"
@@ -312,7 +302,7 @@ export const Layout = () => {
           />
 
           <Route key="/trends" exact path="/trends" component={Trends} />
-          {/* admindashboard/trends */}
+        
         </Switch>
       </main>
     </div>
