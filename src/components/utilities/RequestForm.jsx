@@ -111,13 +111,7 @@ export default function RequestForm() {
       });
   };
 
-  // const requestername = () => {
-  //   const jsonBody = {
-  //     username:username
-  //   };
-  //   axios
-  //     .get("http://localhost:8080/username")
-  // };
+ 
 
   const NewRequest = () => {
     const jsonBody = {
@@ -127,8 +121,7 @@ export default function RequestForm() {
       impacted_service: impacted_service,
       request_location: request_location,
       description: description,
-      //photo
-      //document
+      
     };
 
     axios
@@ -144,6 +137,8 @@ export default function RequestForm() {
       });
   };
 
+  
+  
   return (
     <div className={classes.root}>
       <div className={classes.mainContent}>
