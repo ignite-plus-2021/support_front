@@ -108,7 +108,7 @@ export default function RequestForm() {
       .then((resp) => resp.json())
       .then((resp) => setServices(resp));
   }, []);
-  console.log(services);
+  //console.log(services);
 
   //Fetch services from locations db
   useEffect(() => {
@@ -121,50 +121,9 @@ export default function RequestForm() {
       .then((resp) => resp.json())
       .then((resp) => setLocations(resp));
   }, []);
-  console.log(locations);
+ // console.log(locations);
 
-  //Get a RequestId from backend
-  // const [requestid, setRequestId] = useState("");
-  // useEffect(() => {
-  //   fetch("http://localhost:8080/requestid", {
-  //     method: "Get",
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //     },
-  //   })
-  //     .then((resp) => resp.text())
-  //     .then((data) => console.log(data))
-  //     .then((resp) => setRequestId(resp))
-  //     .catch((err) => {
-  //       console.log("Error Reading data ");
-  //     });
-  // }, []);
-
-  // console.log(requestid);
-
-  //upload photos;
-  // let fd = new FormData();
-  // const photoSelectedHandler = (event) => {
-  //   fd.append("file", event.target.files[0], event.target.files[0].name);
-  // };
-
-  // //upload documents
-  // let cd = new FormData();
-  // const docSelectedHandler = (event) => {
-  // cd.append("file", event.target.files[0], event.target.files[0].name);
-  // };
-
-  //Headers for axios
-  // let axiosConfig = {
-  //   headers: {
-  //     "Content-Type": "application/json;charset=UTF-8",
-  //     // "Access-Control-Allow-Origin": "*",
-  //   },
-  // };
-
-  // headers: {
-  //   'content-type': 'multipart/form-data'
-  // }
+ 
 
   //On requestform Submit
   const NewRequest = (event) => {
@@ -178,20 +137,13 @@ export default function RequestForm() {
   //   userId: id,
   //   locationId: request_location,
   //   serviceId: impacted_service,
-  //   photo: fd,
-  //   document: cd,
-  // };
+ 
+   };
   // console.log(postData);
 
-  //   const formData = new Formdata();
-  //   formData.append(requestId, requestid);
-  //   formData.append(state, requeststate);
-  //   formData.append(description, description);
-  //   formData.append(locationId, request_location);
-  //   formData.append(serviceId, impacted_service);
 
-  //   axios
-  //     .post("http://localhost:8080/request/newrequest", formData)
+     axios
+  //     .post("http://localhost:8080/request/newrequest")
   //     .then((response) => {
   //       if (response.status === 200) {
   //         console.log(response.data);
