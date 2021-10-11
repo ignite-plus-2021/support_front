@@ -60,10 +60,10 @@ const useStyles = makeStyles((theme) => ({
 
 export default function RequestForm() {
   const classes = useStyles();
-  const [name, setname] = useState("Jack");
+  const [name, setname] = useState("");
   const [description, setdescription] = useState("");
-  const [requestid, setrequestid] = useState("REQ0073");
-  const [requeststate, setrequeststate] = useState("Active");
+  const [requestid, setrequestid] = useState("");
+  const [requeststate, setrequeststate] = useState("");
 
   const [service, setservice] = React.useState("");
   const [impacted_service, setimpacted_service] = React.useState("");
