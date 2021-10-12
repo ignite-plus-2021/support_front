@@ -239,29 +239,39 @@ export const Layout = () => {
       </Drawer>
       <main className={classes.content}>
         <div className={classes.appBarSpacer} />
+          
         <Switch>
-          {<Route key="/" exact path="/" component={HomePage} />}
+          
+          
+          <Route key="/" exact path="/" component={HomePage} />
+            
           <Route key="/register" exact path="/register" component={SignUp} />
+            
           <Route key="/login" exact path="/login" component={SignIn} />
+            
           <Route
             key="/myrequests"
             exact
             path="/myrequests"
             component={MyRequests}
           />
+              
           <Route
             key="/allrequests"
             exact
             path="/allrequests"
             component={AllRequests}
           />
+              
           <Route
             key="/requestform"
             exact
             path="/requestform"
             component={RequestForm}
           />
+              
         </Switch>
+
       </main>
     </div>
   );
